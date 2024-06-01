@@ -1,0 +1,13 @@
+[q1]
+
+PERGUNTA="Jonas, Lider de manutenção setor financeiro quer implementar paineis solares para a geração de energia da empresa, voce aceita?"
+ESG=[0, 0, 0, 1, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+AREA="ENVIROMENT"
+SETOR="MANUTENÇÃO"
+
+[q2]
+
+PERGUNTA="Jonas, Lider de manutenção setor financeiro quer implementar paineis solares para a geração de energia da empresa, voce aceita?"
+ESG=[0, 0, 0, 1, 0, 1, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 0, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+AREA="ENVIROMENT"
+SETOR="MANUTENÇÃO"
