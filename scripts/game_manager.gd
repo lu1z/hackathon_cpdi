@@ -20,8 +20,9 @@ func print_ESG(idxs, group, score):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var loader = DataLoader.new()
-	loader.strategy = loader.CONFIG_FILE
+	loader.strategy = loader.CSV_FILE
 	var questions = loader.load_file()
+	print(questions.size())
 	for q in questions:
 		print(q.id)
 		print(q.question)

@@ -2,7 +2,7 @@ extends Object
 
 class_name DataLoader
 
-enum {JSON_FILE, CONFIG_FILE}
+enum {JSON_FILE, CONFIG_FILE, CSV_FILE}
 
 static var QUESTIONS_FILE_PATH = "res://questions.txt"
 var strategy = CONFIG_FILE
@@ -10,6 +10,8 @@ var strategy = CONFIG_FILE
 func load_file():
 	if strategy == CONFIG_FILE:
 		return load_config_file()
+	if strategy == CSV_FILE:
+		return load_csv_file()
 	return load_json_file()
 
 func save_file():
@@ -57,3 +59,35 @@ func load_config_file():
 func load_json_file():
 	#TODO
 	pass
+
+func load_csv_file():
+	var file = FileAccess.open(QUESTIONS_FILE_PATH, FileAccess.READ)
+	if file == null:
+		print(FileAccess.get_open_error())
+		return
+
+	var q_data = []
+	while not file.eof_reached():
+		var line = file.get_csv_line()
+		if line.size() <= 1:
+			continue
+		var question = Question.new()
+		var last = line.size() - 1
+		question.id = StringName(line[last])
+		last -= 1
+		question.actor = StringName(line[last])
+		last -= 1
+		question.question = StringName(line[last])
+		last -= 1
+		question.yes = StringName(line[last])
+		last -= 1
+		question.no = StringName(line[last])
+		last -= 1
+		question.cost = int(line[last])
+		var esg = []
+		for i in last:
+			esg.append(int(line[i]))
+		question.esg = esg
+		q_data.append(question)
+	file.close()
+	return q_data
