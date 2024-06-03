@@ -6,9 +6,9 @@ var score: Array
 var money: int
 var revenue: int
 
-@export var DEFAULT_INITIAL_VALUE = 50
+@export var DEFAULT_INITIAL_VALUE = 0
 @export var DEFAULT_INITIAL_MONEY = 1000000
-@export var DEFAULT_INITIAL_REVENUE = 20000
+@export var DEFAULT_INITIAL_REVENUE = 27000
 
 func score_initialize():
 	money = DEFAULT_INITIAL_MONEY
@@ -37,3 +37,10 @@ func apply_revenue():
 
 func apply_cost(cost):
 	money += cost 
+
+func print_score():
+	print("Money: " + str(money) + " Revenue: " + str(revenue))
+	print(" Enviroment Score: " + str(get_current_enviroment_score()) +
+		" Social Score: " + str(get_current_social_score()) +
+		" Governance Score: " + str(get_current_governance_score())
+	)

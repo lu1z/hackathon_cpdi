@@ -8,11 +8,13 @@ static var QUESTIONS_FILE_PATH = "res://questions.txt"
 var strategy = CONFIG_FILE
 
 func load_file():
-	if strategy == CONFIG_FILE:
-		return load_config_file()
-	if strategy == CSV_FILE:
-		return load_csv_file()
-	return load_json_file()
+	match strategy:
+		CONFIG_FILE:
+			return load_config_file()
+		CSV_FILE:
+			return load_csv_file()
+		JSON_FILE:
+			return load_json_file()
 
 func save_file():
 	var config = ConfigFile.new()

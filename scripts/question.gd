@@ -111,3 +111,9 @@ static var indexedNames = [
 	"Gestão de riscos",
 	"Critérios transparentes sobre remuneração e planos de carreira"
 ]
+
+func group_sum(section):
+	var sum = 0
+	for i in section:
+		sum += esg[i]
+	return sum
