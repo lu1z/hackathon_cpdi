@@ -6,16 +6,17 @@ var score: Array
 var money: int
 var revenue: int
 
-@export var DEFAULT_INITIAL_VALUE = 0
+@export var DEFAULT_INITIAL_SCORE = 0
 @export var DEFAULT_INITIAL_MONEY = 1000000
 @export var DEFAULT_INITIAL_REVENUE = 27000
+@export var DEFAULT_WIN_CONDITION = 5
 
 func score_initialize():
 	money = DEFAULT_INITIAL_MONEY
 	revenue = DEFAULT_INITIAL_REVENUE
 	score = []
 	score.resize(len(Question.indexedNames))
-	score.fill(DEFAULT_INITIAL_VALUE)
+	score.fill(DEFAULT_INITIAL_SCORE)
 
 func get_current_group_score(group: Array):
 	var sum = 0
@@ -44,3 +45,15 @@ func print_score():
 		" Social Score: " + str(get_current_social_score()) +
 		" Governance Score: " + str(get_current_governance_score())
 	)
+
+func apply_scores(esg: Array, group: Array):
+	var index = 0
+	for i in group:
+		score[index] += esg[i]
+		index += 1
+
+func check_win_condition():
+	var env = get_current_enviroment_score() >= DEFAULT_WIN_CONDITION
+	var soc = get_current_social_score() >= DEFAULT_WIN_CONDITION
+	var gov = get_current_governance_score() >= DEFAULT_WIN_CONDITION
+	return env and soc and gov

@@ -10,10 +10,12 @@ var no: StringName
 var esg: Array
 var cost: int
 
+static var yes_group = range(0, 24)
 static var yes_enviroment = range(0, 8)
 static var yes_social = range(8, 14)
 static var yes_governance = range(14, 24)
 
+static var no_group = range(24, 48)
 static var no_enviroment = range(24, 32)
 static var no_social = range(32, 38)
 static var no_governance = range(38, 48)
