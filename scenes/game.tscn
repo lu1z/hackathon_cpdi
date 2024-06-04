@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://ucpj4luh3ort"]
+[gd_scene load_steps=9 format=3 uid="uid://ucpj4luh3ort"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_bhtn8"]
+[ext_resource type="Texture2D" uid="uid://4st6t1ubqxn8" path="res://assets/CellBig_03.png" id="2_u7uoc"]
+[ext_resource type="Texture2D" uid="uid://c7q7nsa6qdse5" path="res://assets/BarWindow.png" id="2_y5p0r"]
+[ext_resource type="Texture2D" uid="uid://bcvg37pq3bsi5" path="res://assets/ButtonPanel.png" id="3_dwnbu"]
+[ext_resource type="Texture2D" uid="uid://dfn0qesyklejs" path="res://assets/CellBig_01.png" id="3_e1apg"]
+[ext_resource type="Texture2D" uid="uid://mwkog826q6h4" path="res://assets/CellBig_02.png" id="4_4mtrc"]
+[ext_resource type="Texture2D" uid="uid://c8roe371xm7aj" path="res://assets/Btn_V15.png" id="5_ka1m2"]
+[ext_resource type="Texture2D" uid="uid://cu8meimdptfu3" path="res://assets/Btn_V12.png" id="6_jyph0"]
 
 [node name="GameManager" type="Control"]
 layout_mode = 3
@@ -10,3 +17,70 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bhtn8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 731.0
+offset_bottom = 1056.0
+texture = ExtResource("2_y5p0r")
+expand_mode = 3
+
+[node name="botaoAvancaTurno" type="Button" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 831.0
+offset_right = 248.0
+offset_bottom = 862.0
+scale = Vector2(1.89756, 1.89756)
+text = "AVANÇAR TURNO"
+icon = ExtResource("3_dwnbu")
+flat = true
+icon_alignment = 1
+
+[node name="Panel" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -84.0
+offset_top = 102.0
+offset_right = -84.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.63779, 0.73463)
+
+[node name="botaoE" type="Button" parent="Panel"]
+layout_mode = 2
+text = "Enviroment"
+icon = ExtResource("2_u7uoc")
+flat = true
+icon_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel/botaoE"]
+layout_mode = 0
+offset_left = 485.632
+offset_top = 80.2114
+offset_right = 525.632
+offset_bottom = 120.211
+scale = Vector2(1.16492, 1.2707)
+value = 50.0
+fill_mode = 6
+texture_under = ExtResource("5_ka1m2")
+texture_progress = ExtResource("6_jyph0")
+tint_under = Color(1, 1, 1, 0.211765)
+
+[node name="botaoS" type="Button" parent="Panel"]
+layout_mode = 2
+text = "Social"
+icon = ExtResource("4_4mtrc")
+flat = true
+icon_alignment = 1
+
+[node name="botaoG" type="Button" parent="Panel"]
+layout_mode = 2
+text = "Governance
+"
+icon = ExtResource("3_e1apg")
+flat = true
+icon_alignment = 1
