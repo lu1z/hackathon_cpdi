@@ -4,9 +4,11 @@ class_name GameManager
 
 var question_manager: QuestionManager
 var score_manager: ScoreManager
+var turn: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	turn = 1
 	question_manager = QuestionManager.new()
 	question_manager.load_questions()
 	question_manager.shuffle_questions()
@@ -17,7 +19,7 @@ func _ready():
 	print("-----------------preturn-------------------")
 	score_manager.print_score()
 	print("-------------------end-------------------")
-	for turn in 10:
+	for iturn in 10:
 		print("------------------turn: " + str(turn) + " ------------------")
 		if score_manager.get_current_enviroment_score() < 0:
 			print("triggered enviroment bias")
@@ -38,8 +40,14 @@ func _ready():
 		if score_manager.check_win_condition():
 			print("---------------------Won-------------------")
 			break
+		await $botaoAvancaTurno.pressed
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_botao_avanca_turno_pressed():
+	print("Next turn pressed")
+	turn += 1

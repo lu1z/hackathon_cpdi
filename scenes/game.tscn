@@ -84,3 +84,5 @@ text = "Governance
 icon = ExtResource("3_e1apg")
 flat = true
 icon_alignment = 1
+
+[connection signal="pressed" from="botaoAvancaTurno" to="." method="_on_botao_avanca_turno_pressed"]
