@@ -27,6 +27,8 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bhtn8")
@@ -39,18 +41,18 @@ scale = Vector2(0.989181, 1.22299)
 texture = ExtResource("2_ncl7v")
 expand_mode = 3
 
-[node name="botaoAvancaTurno" type="TextureButton" parent="."]
+[node name="botaoAvancaTurno" type="TextureButton" parent="TextureRect"]
 layout_mode = 0
-offset_left = 263.0
-offset_top = 1006.0
-offset_right = 327.0
-offset_bottom = 1037.0
+offset_left = 265.877
+offset_top = 822.574
+offset_right = 329.877
+offset_bottom = 853.574
 scale = Vector2(3, 3)
 texture_normal = SubResource("AtlasTexture_ljbtl")
 texture_pressed = SubResource("AtlasTexture_r5qht")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="botaoAvancaTurno"]
+[node name="Label" type="Label" parent="TextureRect/botaoAvancaTurno"]
 layout_mode = 0
 offset_left = 8.33333
 offset_top = 4.66667
@@ -61,24 +63,24 @@ text = "PRÓXIMO MÊS"
 label_settings = SubResource("LabelSettings_njcku")
 uppercase = true
 
-[node name="botaoE" type="Button" parent="."]
+[node name="botaoE" type="Button" parent="TextureRect"]
 layout_mode = 2
-offset_left = 24.0
-offset_top = 10.0
-offset_right = 224.0
-offset_bottom = 210.0
+offset_left = 24.2625
+offset_top = 8.17668
+offset_right = 224.262
+offset_bottom = 208.177
+scale = Vector2(1.14082, 0.941476)
 text = "Enviroment"
 icon = ExtResource("2_u7uoc")
 flat = true
 icon_alignment = 1
 
-[node name="progressBarE" type="TextureProgressBar" parent="botaoE"]
+[node name="progressBarE" type="TextureProgressBar" parent="TextureRect/botaoE"]
 layout_mode = 0
 offset_left = 212.0
 offset_top = 60.0
-offset_right = 453.0
-offset_bottom = 115.0
-scale = Vector2(1.16492, 1.2707)
+offset_right = 462.0
+offset_bottom = 120.0
 min_value = -50.0
 max_value = 50.0
 texture_under = ExtResource("5_ka1m2")
@@ -86,27 +88,69 @@ texture_progress = ExtResource("5_ka1m2")
 tint_under = Color(0, 0.0156863, 0, 0.301961)
 tint_progress = Color(0.556863, 0.552941, 0, 1)
 
-[node name="botaoS" type="Button" parent="."]
+[node name="botaoS" type="Button" parent="TextureRect"]
 layout_mode = 2
-offset_left = 25.0
-offset_top = 206.0
-offset_right = 225.0
-offset_bottom = 406.0
+offset_left = 21.2297
+offset_top = 214.229
+offset_right = 221.23
+offset_bottom = 414.229
+scale = Vector2(1.1662, 0.968563)
 text = "Social"
 icon = ExtResource("4_4mtrc")
 flat = true
 icon_alignment = 1
 
-[node name="botaoG" type="Button" parent="."]
+[node name="progressBarS" type="TextureProgressBar" parent="TextureRect/botaoS"]
+layout_mode = 0
+offset_left = 210.0
+offset_top = 70.0
+offset_right = 460.0
+offset_bottom = 130.0
+min_value = -50.0
+max_value = 50.0
+texture_under = ExtResource("5_ka1m2")
+texture_progress = ExtResource("5_ka1m2")
+tint_under = Color(0, 0.0156863, 0, 0.301961)
+
+[node name="botaoG" type="Button" parent="TextureRect"]
 layout_mode = 2
-offset_left = 20.0
-offset_top = 424.0
-offset_right = 220.0
-offset_bottom = 624.0
+offset_left = 20.2187
+offset_top = 423.552
+offset_right = 220.219
+offset_bottom = 623.552
+scale = Vector2(1.16529, 0.925401)
 text = "Governance
 "
 icon = ExtResource("3_e1apg")
 flat = true
 icon_alignment = 1
 
-[connection signal="pressed" from="botaoAvancaTurno" to="." method="_on_botao_avanca_turno_pressed"]
+[node name="progressBarG" type="TextureProgressBar" parent="TextureRect/botaoG"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 64.0
+offset_right = 472.0
+offset_bottom = 124.0
+min_value = -50.0
+max_value = 50.0
+texture_under = ExtResource("5_ka1m2")
+texture_progress = ExtResource("5_ka1m2")
+tint_under = Color(0, 0.0156863, 0, 0.301961)
+tint_progress = Color(1, 0.87763, 0.308402, 1)
+
+[node name="Camera2D" type="Camera2D" parent="TextureRect"]
+position = Vector2(356.861, 522.49)
+scale = Vector2(1.01094, 0.817668)
+position_smoothing_enabled = true
+
+[node name="paginaPergunta" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 710.0
+offset_top = -3.0
+offset_right = 1441.0
+offset_bottom = 1053.0
+scale = Vector2(0.986851, 1.22299)
+texture = ExtResource("2_ncl7v")
+expand_mode = 3
+
+[connection signal="pressed" from="TextureRect/botaoAvancaTurno" to="." method="_on_botao_avanca_turno_pressed"]

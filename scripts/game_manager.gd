@@ -36,13 +36,13 @@ func _ready():
 		else:
 			score_manager.apply_scores(question_manager.current.esg, Question.no_group)
 		score_manager.print_score()
-		$botaoE/progressBarE.value = score_manager.get_current_enviroment_score()
+		$TextureRect/botaoE/progressBarE.value = score_manager.get_current_enviroment_score()
 		print("------------------endturn: " + str(turn) + " ------------------")
 		
 		if score_manager.check_win_condition():
 			print("---------------------Won-------------------")
 			break
-		await $botaoAvancaTurno.pressed
+		await $TextureRect/botaoAvancaTurno.pressed
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,3 +53,4 @@ func _process(delta):
 func _on_botao_avanca_turno_pressed():
 	print("Next turn pressed")
 	turn += 1
+	$TextureRect/Camera2D.set_position(Vector2(1098,529))
