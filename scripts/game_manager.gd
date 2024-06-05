@@ -36,7 +36,9 @@ func _ready():
 		else:
 			score_manager.apply_scores(question_manager.current.esg, Question.no_group)
 		score_manager.print_score()
+		$botaoE/progressBarE.value = score_manager.get_current_enviroment_score()
 		print("------------------endturn: " + str(turn) + " ------------------")
+		
 		if score_manager.check_win_condition():
 			print("---------------------Won-------------------")
 			break
