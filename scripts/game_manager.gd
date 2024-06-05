@@ -2,9 +2,12 @@ extends Control
 
 class_name GameManager
 
-var question_manager: QuestionManager
-var score_manager: ScoreManager
-var turn: int
+static var myself = new()
+static var question_manager: QuestionManager
+static var score_manager: ScoreManager
+static var turn: int
+
+signal turn_advanced
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +22,8 @@ func _ready():
 	print("-----------------preturn-------------------")
 	score_manager.print_score()
 	print("-------------------end-------------------")
+	Action.new().change_revenue(100000, 3)
+	
 	for iturn in 10:
 		print("------------------turn: " + str(turn) + " ------------------")
 		if score_manager.get_current_enviroment_score() < 0:
@@ -40,6 +45,9 @@ func _ready():
 		if score_manager.check_win_condition():
 			print("---------------------Won-------------------")
 			break
+		if score_manager.check_lose_condition():
+			print("---------------------Lost-------------------")
+			break
 		await $botaoAvancaTurno.pressed
 
 
@@ -51,3 +59,4 @@ func _process(delta):
 func _on_botao_avanca_turno_pressed():
 	print("Next turn pressed")
 	turn += 1
+	myself.turn_advanced.emit()

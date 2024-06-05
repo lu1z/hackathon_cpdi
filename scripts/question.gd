@@ -9,6 +9,7 @@ var yes: StringName
 var no: StringName
 var esg: Array
 var cost: int
+var action: Callable
 
 static var yes_group = range(0, 24)
 static var yes_enviroment = range(0, 8)

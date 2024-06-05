@@ -5,11 +5,13 @@ class_name ScoreManager
 var score: Array
 var money: int
 var revenue: int
+var skip: int
 
 @export var DEFAULT_INITIAL_SCORE = 0
 @export var DEFAULT_INITIAL_MONEY = 1000000
 @export var DEFAULT_INITIAL_REVENUE = 27000
 @export var DEFAULT_WIN_CONDITION = 5
+@export var DEFAULT_LOSE_CONDITION = -20
 
 func score_initialize():
 	money = DEFAULT_INITIAL_MONEY
@@ -56,4 +58,10 @@ func check_win_condition():
 	var env = get_current_enviroment_score() >= DEFAULT_WIN_CONDITION
 	var soc = get_current_social_score() >= DEFAULT_WIN_CONDITION
 	var gov = get_current_governance_score() >= DEFAULT_WIN_CONDITION
+	return env and soc and gov
+
+func check_lose_condition():
+	var env = get_current_enviroment_score() <= DEFAULT_LOSE_CONDITION
+	var soc = get_current_social_score() <= DEFAULT_LOSE_CONDITION
+	var gov = get_current_governance_score() <= DEFAULT_LOSE_CONDITION
 	return env and soc and gov
