@@ -47,6 +47,7 @@ func print_score():
 		" Social Score: " + str(get_current_social_score()) +
 		" Governance Score: " + str(get_current_governance_score())
 	)
+	
 
 func apply_scores(esg: Array, group: Array):
 	var index = 0
