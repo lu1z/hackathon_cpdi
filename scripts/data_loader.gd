@@ -75,6 +75,18 @@ func load_csv_file():
 			continue
 		var question = Question.new()
 		var last = line.size() - 1
+		var action = Action.new()
+		action.name = StringName(line[last])
+		last -= 1
+		action.arg4 = line[last]
+		last -= 1
+		action.arg3 = line[last]
+		last -= 1
+		action.arg2 = line[last]
+		last -= 1
+		action.arg1 = line[last]
+		last -= 1
+		question.action = action
 		question.id = StringName(line[last])
 		last -= 1
 		question.actor = StringName(line[last])

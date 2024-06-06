@@ -22,8 +22,12 @@ func _ready():
 	print("-----------------preturn-------------------")
 	score_manager.print_score()
 	print("-------------------end-------------------")
-	Action.new().change_revenue(100000, 3)
-	
+	#Action.change_revenue(100000, 3)
+	#var qqqq = question_manager.questions.filter(func(q): return q.id == "q1")[0]
+	#qqqq.action.execute()
+	#qqqq.action.execute()
+	#var m_callable = Callable(Action, "change_revenue")
+	#m_callable.call("100000", "3")
 	for iturn in 10:
 		print("------------------turn: " + str(turn) + " ------------------")
 		if score_manager.get_current_enviroment_score() < 0:
@@ -34,9 +38,10 @@ func _ready():
 		else:
 			question_manager.draw_question()
 		print(question_manager.current.id)
-		score_manager.apply_cost(question_manager.current.cost)
 		score_manager.apply_revenue()
 		if turn % 2 == 0:
+			question_manager.current.action.execute()
+			score_manager.apply_cost(question_manager.current.cost)
 			score_manager.apply_scores(question_manager.current.esg, Question.yes_group)
 		else:
 			score_manager.apply_scores(question_manager.current.esg, Question.no_group)
@@ -55,7 +60,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_botao_avanca_turno_pressed():
 	print("Next turn pressed")
