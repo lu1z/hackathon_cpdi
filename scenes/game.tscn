@@ -152,5 +152,3 @@ offset_bottom = 1053.0
 scale = Vector2(0.986851, 1.22299)
 texture = ExtResource("2_ncl7v")
 expand_mode = 3
-
-[connection signal="pressed" from="TextureRect/botaoAvancaTurno" to="." method="_on_botao_avanca_turno_pressed"]
