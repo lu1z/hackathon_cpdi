@@ -1,11 +1,13 @@
-extends Object
+class_name DataLoader extends Object
 
-class_name DataLoader
 
 enum {JSON_FILE, CONFIG_FILE, CSV_FILE}
+var strategy = CONFIG_FILE
+
 
 static var QUESTIONS_FILE_PATH = "res://questions.txt"
-var strategy = CONFIG_FILE
+static var CHARACTERS_FILE_PATH = "res://characters.txt"
+
 
 func load_file():
 	match strategy:
@@ -16,24 +18,7 @@ func load_file():
 		JSON_FILE:
 			return load_json_file()
 
-func save_file():
-	var config = ConfigFile.new()
-
-	# Store some values.
-	config.set_value("q1", "PERGUNTA", "Jonas, Lider de manutenção setor financeiro quer implementar paineis solares para a geração de energia da empresa, voce aceita?")
-	config.set_value("q1", "ESG", [0,0,0,1,0,1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,-1,0,-3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	config.set_value("q1", "AREA", "ENVIROMENT")
-	config.set_value("q1", "SETOR", "MANUTENÇÃO")
-	
-	config.set_value("q2", "PERGUNTA", "Jonas, Lider de manutenção setor financeiro quer implementar paineis solares para a geração de energia da empresa, voce aceita?")
-	config.set_value("q2", "ESG", [0,0,0,1,0,1,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,-1,0,-3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
-	config.set_value("q2", "AREA", "ENVIROMENT")
-	config.set_value("q2", "SETOR", "MANUTENÇÃO")
-
-	# Save it to a file (overwrite if already exists).
-	config.save(QUESTIONS_FILE_PATH)
-
-
+#outdated
 func load_config_file():
 	var q_data = []
 	var config = ConfigFile.new()
@@ -62,12 +47,12 @@ func load_json_file():
 	#TODO
 	pass
 
+
 func load_csv_file():
 	var file = FileAccess.open(QUESTIONS_FILE_PATH, FileAccess.READ)
 	if file == null:
 		print(FileAccess.get_open_error())
 		return
-
 	var q_data = []
 	while not file.eof_reached():
 		var line = file.get_csv_line()
@@ -89,7 +74,9 @@ func load_csv_file():
 		question.action = action
 		question.id = StringName(line[last])
 		last -= 1
-		question.actor = StringName(line[last])
+		var character = Character.new()
+		character.id = StringName(line[last])
+		question.character = character
 		last -= 1
 		question.question = StringName(line[last])
 		last -= 1

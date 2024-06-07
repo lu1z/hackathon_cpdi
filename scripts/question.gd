@@ -1,9 +1,7 @@
-extends Object
-
-class_name Question
+class_name Question extends Object
 
 var id: StringName
-var actor: StringName
+var character: Character
 var question: StringName
 var yes: StringName
 var no: StringName

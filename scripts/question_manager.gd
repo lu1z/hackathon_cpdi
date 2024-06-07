@@ -1,23 +1,32 @@
-extends Object
+class_name QuestionManager extends Object
 
-class_name QuestionManager
 
 var questions: Array
 var current: Question
+
+
+func _init():
+	load_questions()
+	shuffle_questions()
+
 
 func load_questions():
 	var loader = DataLoader.new()
 	loader.strategy = loader.CSV_FILE
 	questions = loader.load_file()
 
+
 func shuffle_questions():
 	questions.shuffle()
+
 
 func draw_question():
 	current = questions.pop_back()
 
+
 func is_group_sum_grater_than(q: Question, yes_section: Array, no_section, magnitude: int):
 	return q.group_sum(yes_section) > magnitude or q.group_sum(no_section) > magnitude
+
 
 func find_elegibles_pick_one(yes_section: Array, no_section, magnitude: int):
 	var positives = questions.filter(
@@ -31,6 +40,7 @@ func find_elegibles_pick_one(yes_section: Array, no_section, magnitude: int):
 	current = positives.pick_random()
 	questions.erase(current)
 
+
 func draw_question_with_bias(bias: Question.ESG_GROUPS, magnitude: int):
 	match bias:
 		Question.ESG_GROUPS.ENVIROMENT:
@@ -39,6 +49,7 @@ func draw_question_with_bias(bias: Question.ESG_GROUPS, magnitude: int):
 			return find_elegibles_pick_one(Question.yes_social, Question.no_social, magnitude)
 		Question.ESG_GROUPS.GOVERNANCE:
 			return find_elegibles_pick_one(Question.yes_governance, Question.no_governance, magnitude)
+
 
 func print_ESG(idxs, group, score):
 	for i in idxs:
@@ -49,6 +60,7 @@ func print_ESG(idxs, group, score):
 			group +
 			str(score[i])
 		)
+
 
 func print_ESGs():
 	print_ESG(Question.yes_enviroment, " --- Yes on Enviroment Score: ", current.esg)
