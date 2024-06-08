@@ -52,21 +52,19 @@ func present_question():
 	match bad_luck_protection:
 		0:
 			print("-------Triggered Enviroment bias---------")
-			print("Enviroment yes sum: " + str(question_manager.current.group_sum(Question.yes_enviroment) ) )
-			print("Enviroment no  sum: " + str(question_manager.current.group_sum(Question.no_enviroment) ) )
+			print("Enviroment yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_enviroment) ) )
+			print("Enviroment no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_enviroment) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
 		1:
 			print("-------Triggered Social bias---------")
-			print("Social yes sum: " + str(question_manager.current.group_sum(Question.yes_social) ) )
-			print("Social no  sum: " + str(question_manager.current.group_sum(Question.no_social) ) )
+			print("Social yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_social) ) )
+			print("Social no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_social) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
 		2:
 			print("-------Triggered Governance bias---------")
-			print("Governance yes sum: " + str(question_manager.current.group_sum(Question.yes_governance) ) )
-			print("Governance no  sum: " + str(question_manager.current.group_sum(Question.no_governance) ) )
+			print("Governance yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_governance) ) )
+			print("Governance no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_governance) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
-# Debug purposes
-	print("Chosen question: " + question_manager.current.id)
 
 
 func post_turn():
@@ -80,16 +78,26 @@ func post_turn():
 		print("---------------------Lost-------------------")
 
 
+func rollback_question():
+	var old = question_manager.current
+	present_question()
+	question_manager.questions.append(old)
+	question_manager.shuffle_questions()
+
+
+func _on_botao_pergunta_skip_pressed():
+	rollback_question()
+
 # connect to yes button
 func _on_botao_pergunta_nao_pressed():
-	score_manager.apply_scores(question_manager.current.esg, Question.no_group)
+	score_manager.apply_scores(question_manager.current.esg.esg, ESG.no_group)
 	post_turn()
 
 
 # connect to yes button
 func _on_botao_pergunta_sim_pressed():
 	score_manager.apply_cost(question_manager.current.cost)
-	score_manager.apply_scores(question_manager.current.esg, Question.yes_group)
+	score_manager.apply_scores(question_manager.current.esg.esg, ESG.yes_group)
 	question_manager.current.action.execute()
 	post_turn()
 
@@ -98,3 +106,5 @@ func _on_botao_avanca_turno_pressed():
 	print("Next turn pressed")
 	pre_turn()
 	present_question()
+	# Debug purposes
+	print("Chosen question: " + question_manager.current.id)

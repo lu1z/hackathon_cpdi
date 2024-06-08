@@ -85,9 +85,11 @@ func load_csv_file():
 		question.no = StringName(line[last])
 		last -= 1
 		question.cost = int(line[last])
-		var esg = []
+		var esg_table = []
 		for i in last:
-			esg.append(int(line[i]))
+			esg_table.append(int(line[i]))
+		var esg = ESG.new()
+		esg.esg = esg_table
 		question.esg = esg
 		q_data.append(question)
 	file.close()
