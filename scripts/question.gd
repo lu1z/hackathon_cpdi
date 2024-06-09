@@ -1,5 +1,6 @@
 class_name Question extends Object
 
+
 var id: StringName
 var character: Character
 var question: StringName
