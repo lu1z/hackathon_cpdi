@@ -113,3 +113,27 @@ func _on_botao_avanca_turno_pressed():
 	print("Chosen question: " + question_manager.current.id)
 	lpergunta.text = str(question_manager.current.question)
 	anima_pagina_pergunta.play("Abrepergunta")
+	print(anima_pagina_pergunta.get_animation(name))
+
+
+
+func _on_botao_aceita_pressed():
+	anima_pagina_pergunta.play("FechaPergunta")
+	score_manager.apply_cost(question_manager.current.cost)
+	score_manager.apply_scores(question_manager.current.esg.esg, ESG.yes_group)
+	question_manager.current.action.execute()
+	post_turn()
+	$paginaPrincipal/botaoE/progressBarE.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.ENVIROMENT)
+	$paginaPrincipal/botaoS/progressBarS.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.SOCIAL)
+	$paginaPrincipal/botaoG/progressBarG.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE)
+
+
+func _on_botao_declina_pressed():
+	anima_pagina_pergunta.play("FechaPergunta")
+	score_manager.apply_scores(question_manager.current.esg.esg, ESG.no_group)
+	score_manager.apply_cost(question_manager.current.cost)
+	post_turn()
+	$paginaPrincipal/botaoE/progressBarE.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.ENVIROMENT)
+	$paginaPrincipal/botaoS/progressBarS.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.SOCIAL)
+	$paginaPrincipal/botaoG/progressBarG.value = score_manager.get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE)
+
