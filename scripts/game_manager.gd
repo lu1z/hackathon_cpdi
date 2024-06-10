@@ -13,7 +13,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -84,7 +84,6 @@ func _on_botao_pergunta_skip_pressed():
 func _on_botao_pergunta_nao_pressed():
 	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.no_group)
 	post_turn()
-
 
 # connect to yes button
 func _on_botao_pergunta_sim_pressed():

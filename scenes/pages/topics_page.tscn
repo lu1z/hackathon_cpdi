@@ -1,4 +1,18 @@
-[gd_scene format=3 uid="uid://cx5t2048q14qi"]
+[gd_scene load_steps=2 format=3 uid="uid://cx5t2048q14qi"]
+
+[sub_resource type="GDScript" id="GDScript_e7rrv"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="TopicsPage" type="Control"]
 layout_mode = 3
@@ -7,6 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_e7rrv")
 
 [node name="LabelTitle" type="Label" parent="."]
 layout_mode = 1
@@ -29,20 +44,23 @@ offset_bottom = 22.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="LabelTopic1" type="Label" parent="Topics"]
+[node name="LabelTopic1" type="LinkButton" parent="Topics"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Topic1: 25"
-horizontal_alignment = 1
+underline = 2
 
 [node name="LabelTopic2" type="Label" parent="Topics"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Topic2: 25"
 horizontal_alignment = 1
 
 [node name="LabelTopic3" type="Label" parent="Topics"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Topic3: 25"
 horizontal_alignment = 1

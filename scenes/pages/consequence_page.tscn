@@ -1,6 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://b45yvtmwg3bkc"]
+[gd_scene load_steps=3 format=3 uid="uid://b45yvtmwg3bkc"]
 
 [ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_nyy2w"]
+
+[sub_resource type="GDScript" id="GDScript_q28hg"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="ConsequencePage" type="Control"]
 layout_mode = 3
@@ -9,6 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = SubResource("GDScript_q28hg")
 
 [node name="Consequences" type="VBoxContainer" parent="."]
 layout_mode = 1
