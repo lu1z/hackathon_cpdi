@@ -1,11 +1,11 @@
-class_name QuestionManager extends Object
+extends Node
 
 
 var questions: Array
 var current: Question
 
 
-func _init():
+func question_initialize():
 	load_questions()
 	shuffle_questions()
 
@@ -30,3 +30,8 @@ func draw_question_with_bias(bias: ESG.ESG_GROUPS, magnitude: int):
 	)
 	current = elegibles.pick_random()
 	questions.erase(current)
+
+
+func rollback_question():
+	var old = QuestionManager.current
+	QuestionManager.questions.push_front(old)

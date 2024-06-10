@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj7jmudfnx6ur"]
+
+[ext_resource type="Texture2D" uid="uid://wi5ucbkec3py" path="res://assets/icon.svg" id="1_h1i0x"]
+
+[node name="StartPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Controls" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="ButtonSettings" type="Button" parent="Controls"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 64
+text = "Configurações"
+
+[node name="VSeparator" type="VSeparator" parent="Controls"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ButtonExit" type="Button" parent="Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Sair"
+
+[node name="TextureRectLogo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h1i0x")
+expand_mode = 4
+
+[node name="ButtonStart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Iniciar"

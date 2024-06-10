@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="esg_game"
-run/main_scene="res://scenes/game.tscn"
+run/main_scene="res://scenes/pages/introduction_page.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://assets/icon.svg"
+
+[autoload]
+
+ScoreManager="*res://scripts/score_manager.gd"
+GameManager="*res://scripts/game_manager.gd"
+QuestionManager="*res://scripts/question_manager.gd"
 
 [display]
 

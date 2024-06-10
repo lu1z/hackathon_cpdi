@@ -1,4 +1,4 @@
-class_name ScoreManager extends Object
+extends Node
 
 
 var score: Array
@@ -15,10 +15,6 @@ static var DEFAULT_LOSE_CONDITION = -50 # "E" < -20 or "S" < -20 or "G" < -20
 static var DEFAULT_BIAS_MAGNITUDE = 5 #Filtro de quanto a soma de um grupo deve ter para ser elegivel como anti bad luck
 static var DEFAULT_BIAS_TRIGGER = int(DEFAULT_LOSE_CONDITION / 2) #Quão baixo o score do grupo deve estar para acionar a mecanica anti bad luck
 static var DEFAULT_INITIAL_SKIP = 3 #Quantidade de skips inicial 
-
-
-func _init():
-	score_initialize()
 
 
 func score_initialize():
