@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://7jibaagoe42o"]
+
+[ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_gkgyr"]
+
+[node name="QuestionPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="QuestionInformation" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 767.0
+grow_horizontal = 2
+
+[node name="CharacterComponent" parent="QuestionInformation" instance=ExtResource("1_gkgyr")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="QuestionInformation"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="QuestionLabel" type="Label" parent="QuestionInformation"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent. Enim blandit volutpat maecenas volutpat. A lacus vestibulum sed arcu. Semper feugiat nibh sed pulvinar proin gravida hendrerit. Id volutpat lacus laoreet non curabitur gravida arcu ac. Aliquam malesuada bibendum arcu vitae elementum."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="QuestionInformation"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="CostLabel" type="Label" parent="QuestionInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "-2000"
+horizontal_alignment = 1
+
+[node name="ActionInformation" type="MenuButton" parent="QuestionInformation"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Gafanhoto"
+item_count = 1
+popup/item_0/text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Odio tempor orci dapibus ultrices in. Vitae elementum curabitur vitae nunc sed velit dignissim sodales ut."
+popup/item_0/id = 0
+
+[node name="DecisionButtons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ButtonYes" type="Button" parent="DecisionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Sim"
+
+[node name="SkipComponent" type="VBoxContainer" parent="DecisionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LabelSkips" type="Label" parent="DecisionButtons/SkipComponent"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "3"
+horizontal_alignment = 1
+
+[node name="ButtonSkip" type="Button" parent="DecisionButtons/SkipComponent"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 64
+text = "Pula"
+
+[node name="ButtonNo" type="Button" parent="DecisionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Não"

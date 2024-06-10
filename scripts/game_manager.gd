@@ -24,9 +24,9 @@ func initialize_game():
 	turn = 0
 	question_manager = QuestionManager.new()
 	score_manager = ScoreManager.new()
-	$TextureRect/botaoAvancaTurno.pressed.connect(
-		_on_botao_avanca_turno_pressed, CONNECT_ONE_SHOT
-	)
+	#$TextureRect/botaoAvancaTurno.pressed.connect(
+		#_on_botao_avanca_turno_pressed, CONNECT_ONE_SHOT
+	#)
 # Debug purposes
 	print("--------------------preturn----------------------")
 	score_manager.print_score()
