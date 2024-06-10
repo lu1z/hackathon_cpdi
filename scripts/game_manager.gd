@@ -9,6 +9,9 @@ static var question_manager: QuestionManager
 static var score_manager: ScoreManager
 static var turn: int
 
+@onready var lpergunta = $paginaPergunta/PPergunta/Lpergunta
+@onready var anima_pagina_pergunta = $paginaPergunta/animaPaginaPergunta
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +27,7 @@ func initialize_game():
 	turn = 0
 	question_manager = QuestionManager.new()
 	score_manager = ScoreManager.new()
-	$TextureRect/botaoAvancaTurno.pressed.connect(
+	$paginaPrincipal/botaoAvancaTurno.pressed.connect(
 		_on_botao_avanca_turno_pressed, CONNECT_ONE_SHOT
 	)
 # Debug purposes
@@ -108,3 +111,5 @@ func _on_botao_avanca_turno_pressed():
 	present_question()
 	# Debug purposes
 	print("Chosen question: " + question_manager.current.id)
+	lpergunta.text = str(question_manager.current.question)
+	anima_pagina_pergunta.play("Abrepergunta")

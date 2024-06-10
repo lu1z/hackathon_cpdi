@@ -1,26 +1,197 @@
-[gd_scene load_steps=11 format=3 uid="uid://ucpj4luh3ort"]
+[gd_scene load_steps=25 format=3 uid="uid://ucpj4luh3ort"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_bhtn8"]
-[ext_resource type="Texture2D" uid="uid://bvndx627kkwiw" path="res://assets/BackGround_2.png" id="2_ncl7v"]
-[ext_resource type="Texture2D" uid="uid://4st6t1ubqxn8" path="res://assets/CellBig_03.png" id="2_u7uoc"]
-[ext_resource type="Texture2D" uid="uid://dfn0qesyklejs" path="res://assets/CellBig_01.png" id="3_e1apg"]
-[ext_resource type="Texture2D" uid="uid://b7hucpkwsxlpt" path="res://assets/Pixel Buttom.png" id="3_vxooq"]
-[ext_resource type="Texture2D" uid="uid://mwkog826q6h4" path="res://assets/CellBig_02.png" id="4_4mtrc"]
+[ext_resource type="Texture2D" uid="uid://7tdic2u8pw05" path="res://assets/Window03_Btn.png" id="2_xsur6"]
+[ext_resource type="Theme" uid="uid://ymfkox8e78or" path="res://assets/theme1.tres" id="3_nai7r"]
+[ext_resource type="Texture2D" uid="uid://c6bvu504gdd30" path="res://assets/environmental-strategy.png" id="4_a53dx"]
 [ext_resource type="Texture2D" uid="uid://c8roe371xm7aj" path="res://assets/Btn_V15.png" id="5_ka1m2"]
+[ext_resource type="Texture2D" uid="uid://dqowrt3cd7g03" path="res://assets/inclusion.png" id="6_ut05i"]
+[ext_resource type="Texture2D" uid="uid://dmgxy8sqpcxaq" path="res://assets/corporation.png" id="7_s0vii"]
+[ext_resource type="Script" path="res://scenes/Lpergunta.gd" id="8_i0i8s"]
+[ext_resource type="Texture2D" uid="uid://wi5ucbkec3py" path="res://assets/icon.svg" id="9_8ei6w"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ljbtl"]
-atlas = ExtResource("3_vxooq")
-region = Rect2(0, 256.936, 64, 31.0642)
+[sub_resource type="CanvasTexture" id="CanvasTexture_lsgw5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r5qht"]
-atlas = ExtResource("3_vxooq")
-region = Rect2(128, 256, 64, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgim1"]
+atlas = ExtResource("2_xsur6")
+region = Rect2(5.25044, 4.50394, 137.977, 35.9088)
 
-[sub_resource type="LabelSettings" id="LabelSettings_njcku"]
-outline_size = 2
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 2
-shadow_color = Color(0, 0, 0, 0.8)
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa8we"]
+atlas = ExtResource("2_xsur6")
+region = Rect2(4.70536, 1.14925, 138.63, 38.9556)
+
+[sub_resource type="Animation" id="Animation_3bytt"]
+resource_name = "upEdown"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0872665, 0.0, 0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_fsxj7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbtqw"]
+_data = {
+"RESET": SubResource("Animation_fsxj7"),
+"upEdown": SubResource("Animation_3bytt")
+}
+
+[sub_resource type="Animation" id="Animation_skcpp"]
+resource_name = "upEdown"
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0872665, 0.0, -0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_wauum"]
+length = 2.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../botaoG/LGov:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../../botaoG/LGov:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.0872665, 0.0, 0.0872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7e6aa"]
+_data = {
+"RESET": SubResource("Animation_wauum"),
+"upEdown": SubResource("Animation_skcpp")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0t7x4"]
+
+[sub_resource type="Animation" id="Animation_32w1q"]
+resource_name = "Abrepergunta"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(720, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nwycw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(720, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rv7q2"]
+_data = {
+"Abrepergunta": SubResource("Animation_32w1q"),
+"RESET": SubResource("Animation_nwycw")
+}
+
+[sub_resource type="Gradient" id="Gradient_chcca"]
+offsets = PackedFloat32Array(0.364078, 1)
+colors = PackedColorArray(0, 0.317647, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dxony"]
+gradient = SubResource("Gradient_chcca")
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 1)
 
 [node name="GameManager" type="Control"]
 layout_mode = 3
@@ -33,54 +204,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_bhtn8")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="paginaPrincipal" type="TextureRect" parent="."]
+self_modulate = Color(1.73271e-06, 0.760688, 0.492474, 1)
 layout_mode = 0
-offset_right = 731.0
-offset_bottom = 1056.0
-scale = Vector2(0.989181, 1.22299)
-texture = ExtResource("2_ncl7v")
-expand_mode = 3
+offset_right = 720.0
+offset_bottom = 1280.0
+texture = SubResource("CanvasTexture_lsgw5")
 
-[node name="botaoAvancaTurno" type="TextureButton" parent="TextureRect"]
+[node name="botaoAvancaTurno" type="TextureButton" parent="paginaPrincipal"]
+self_modulate = Color(1, 1, 0.662745, 1)
 layout_mode = 0
-offset_left = 265.877
-offset_top = 822.574
-offset_right = 329.877
-offset_bottom = 853.574
-scale = Vector2(3, 3)
-texture_normal = SubResource("AtlasTexture_ljbtl")
-texture_pressed = SubResource("AtlasTexture_r5qht")
+offset_left = 222.0
+offset_top = 857.0
+offset_right = 505.0
+offset_bottom = 931.0
+texture_normal = SubResource("AtlasTexture_fgim1")
+texture_pressed = SubResource("AtlasTexture_aa8we")
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="TextureRect/botaoAvancaTurno"]
+[node name="Label" type="Label" parent="paginaPrincipal/botaoAvancaTurno"]
 layout_mode = 0
-offset_left = 8.33333
-offset_top = 4.66667
-offset_right = 120.333
-offset_bottom = 27.6667
-scale = Vector2(0.42382, 0.42382)
+offset_right = 283.0
+offset_bottom = 73.0
+theme = ExtResource("3_nai7r")
 text = "PRÓXIMO MÊS"
-label_settings = SubResource("LabelSettings_njcku")
+horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
 
-[node name="botaoE" type="Button" parent="TextureRect"]
+[node name="botaoE" type="Button" parent="paginaPrincipal"]
 layout_mode = 2
-offset_left = 24.2625
-offset_top = 8.17668
-offset_right = 224.262
-offset_bottom = 208.177
-scale = Vector2(1.14082, 0.941476)
-text = "Enviroment"
-icon = ExtResource("2_u7uoc")
-flat = true
-icon_alignment = 1
+offset_left = 32.0
+offset_top = 150.0
+offset_right = 696.0
+offset_bottom = 306.0
+pivot_offset = Vector2(300, 77)
+icon = ExtResource("4_a53dx")
+expand_icon = true
 
-[node name="progressBarE" type="TextureProgressBar" parent="TextureRect/botaoE"]
+[node name="progressBarE" type="TextureProgressBar" parent="paginaPrincipal/botaoE"]
 layout_mode = 0
-offset_left = 212.0
-offset_top = 60.0
-offset_right = 462.0
-offset_bottom = 120.0
+offset_left = 284.0
+offset_top = 43.0
+offset_right = 534.0
+offset_bottom = 103.0
 min_value = -50.0
 max_value = 50.0
 texture_under = ExtResource("5_ka1m2")
@@ -88,67 +255,184 @@ texture_progress = ExtResource("5_ka1m2")
 tint_under = Color(0, 0.0156863, 0, 0.301961)
 tint_progress = Color(0.556863, 0.552941, 0, 1)
 
-[node name="botaoS" type="Button" parent="TextureRect"]
+[node name="LAmbiental" type="Label" parent="paginaPrincipal/botaoE"]
+layout_mode = 0
+offset_left = 287.4
+offset_top = 112.305
+offset_right = 522.4
+offset_bottom = 155.305
+pivot_offset = Vector2(117, 21)
+theme = ExtResource("3_nai7r")
+text = "Ambiental"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="animaAmbiental" type="AnimationPlayer" parent="paginaPrincipal/botaoE/LAmbiental"]
+libraries = {
+"": SubResource("AnimationLibrary_fbtqw")
+}
+autoplay = "upEdown"
+
+[node name="botaoS" type="Button" parent="paginaPrincipal"]
 layout_mode = 2
-offset_left = 21.2297
-offset_top = 214.229
-offset_right = 221.23
-offset_bottom = 414.229
-scale = Vector2(1.1662, 0.968563)
+offset_left = 32.0
+offset_top = 314.0
+offset_right = 696.0
+offset_bottom = 474.0
+pivot_offset = Vector2(300, 77)
+icon = ExtResource("6_ut05i")
+expand_icon = true
+
+[node name="progressBarS" type="TextureProgressBar" parent="paginaPrincipal/botaoS"]
+layout_mode = 0
+offset_left = 280.311
+offset_top = 25.4559
+offset_right = 530.311
+offset_bottom = 85.4559
+min_value = -50.0
+max_value = 50.0
+texture_under = ExtResource("5_ka1m2")
+texture_progress = ExtResource("5_ka1m2")
+tint_under = Color(0, 0.0156863, 0, 0.301961)
+tint_progress = Color(0.621524, 0.621524, 0.621524, 1)
+
+[node name="LSocial" type="Label" parent="paginaPrincipal/botaoS"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 112.305
+offset_right = 519.0
+offset_bottom = 155.305
+rotation = 0.0739698
+scale = Vector2(0.907618, 0.907618)
+pivot_offset = Vector2(117, 21)
+theme = ExtResource("3_nai7r")
 text = "Social"
-icon = ExtResource("4_4mtrc")
-flat = true
-icon_alignment = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="progressBarS" type="TextureProgressBar" parent="TextureRect/botaoS"]
-layout_mode = 0
-offset_left = 210.0
-offset_top = 70.0
-offset_right = 460.0
-offset_bottom = 130.0
-min_value = -50.0
-max_value = 50.0
-texture_under = ExtResource("5_ka1m2")
-texture_progress = ExtResource("5_ka1m2")
-tint_under = Color(0, 0.0156863, 0, 0.301961)
+[node name="animaSocial" type="AnimationPlayer" parent="paginaPrincipal/botaoS/LSocial"]
+libraries = {
+"": SubResource("AnimationLibrary_7e6aa")
+}
+autoplay = "upEdown"
 
-[node name="botaoG" type="Button" parent="TextureRect"]
+[node name="botaoG" type="Button" parent="paginaPrincipal"]
 layout_mode = 2
-offset_left = 20.2187
-offset_top = 423.552
-offset_right = 220.219
-offset_bottom = 623.552
-scale = Vector2(1.16529, 0.925401)
-text = "Governance
-"
-icon = ExtResource("3_e1apg")
-flat = true
-icon_alignment = 1
+offset_left = 32.0
+offset_top = 482.0
+offset_right = 696.0
+offset_bottom = 637.0
+pivot_offset = Vector2(300, 77)
+icon = ExtResource("7_s0vii")
+expand_icon = true
 
-[node name="progressBarG" type="TextureProgressBar" parent="TextureRect/botaoG"]
+[node name="progressBarG" type="TextureProgressBar" parent="paginaPrincipal/botaoG"]
 layout_mode = 0
-offset_left = 222.0
-offset_top = 64.0
-offset_right = 472.0
-offset_bottom = 124.0
+offset_left = 284.0
+offset_top = 10.0
+offset_right = 534.0
+offset_bottom = 70.0
 min_value = -50.0
 max_value = 50.0
 texture_under = ExtResource("5_ka1m2")
 texture_progress = ExtResource("5_ka1m2")
 tint_under = Color(0, 0.0156863, 0, 0.301961)
-tint_progress = Color(1, 0.87763, 0.308402, 1)
+tint_progress = Color(0.556863, 0.552941, 0, 1)
 
-[node name="Camera2D" type="Camera2D" parent="TextureRect"]
-position = Vector2(356.861, 522.49)
-scale = Vector2(1.01094, 0.817668)
-position_smoothing_enabled = true
+[node name="LGov" type="Label" parent="paginaPrincipal/botaoG"]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 82.0
+offset_right = 519.0
+offset_bottom = 125.0
+rotation = -0.0872665
+scale = Vector2(0.9, 0.9)
+pivot_offset = Vector2(117, 21)
+theme = ExtResource("3_nai7r")
+text = "Governancia"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="animaGovernancia" type="AnimationPlayer" parent="paginaPrincipal/botaoG/LGov"]
+root_node = NodePath("../../../botaoS/LSocial")
+libraries = {
+"": SubResource("AnimationLibrary_7e6aa")
+}
+autoplay = "RESET"
+
+[node name="Panel" type="Panel" parent="paginaPrincipal"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 34.0
+offset_right = 696.0
+offset_bottom = 130.0
 
 [node name="paginaPergunta" type="TextureRect" parent="."]
+self_modulate = Color(0, 0.547601, 0.138605, 1)
 layout_mode = 0
-offset_left = 710.0
-offset_top = -3.0
-offset_right = 1441.0
-offset_bottom = 1053.0
-scale = Vector2(0.986851, 1.22299)
-texture = ExtResource("2_ncl7v")
-expand_mode = 3
+offset_left = 720.0
+offset_right = 1440.0
+offset_bottom = 1280.0
+texture = SubResource("CanvasTexture_0t7x4")
+
+[node name="animaPaginaPergunta" type="AnimationPlayer" parent="paginaPergunta"]
+libraries = {
+"": SubResource("AnimationLibrary_rv7q2")
+}
+
+[node name="PPergunta" type="Panel" parent="paginaPergunta"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 482.0
+offset_right = 664.0
+offset_bottom = 994.0
+
+[node name="Lpergunta" type="Label" parent="paginaPergunta/PPergunta"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 584.0
+offset_bottom = 488.0
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+script = ExtResource("8_i0i8s")
+
+[node name="PActor" type="Panel" parent="paginaPergunta"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 146.0
+offset_right = 664.0
+offset_bottom = 418.0
+
+[node name="AvatarActor" type="TextureRect" parent="paginaPergunta/PActor"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 80.0
+offset_right = 152.0
+offset_bottom = 208.0
+texture = ExtResource("9_8ei6w")
+
+[node name="ActorName" type="Label" parent="paginaPergunta/PActor"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 88.0
+offset_right = 288.0
+offset_bottom = 111.0
+text = "ACTOR NAME"
+
+[node name="Setor" type="Label" parent="paginaPergunta/PActor"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 128.0
+offset_right = 281.0
+offset_bottom = 151.0
+text = "PROFISSON/SETOR
+"
+
+[node name="paginaNiveisESG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -720.0
+offset_bottom = 1280.0
+texture = SubResource("GradientTexture2D_dxony")
