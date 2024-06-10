@@ -12,6 +12,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_button_back_pressed():
+	get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
 "
 
 [node name="TopicsPage" type="Control"]
@@ -76,3 +80,5 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Voltar"
+
+[connection signal="pressed" from="ButtonBack" to="." method="_on_button_back_pressed" flags=7]
