@@ -28,8 +28,11 @@ func draw_question_with_bias(bias: ESG.ESG_GROUPS, magnitude: int):
 	var elegibles = questions.filter(
 		func(q): return q.esg.is_group_sum_larger_than(bias, magnitude)
 	)
-	current = elegibles.pick_random()
-	questions.erase(current)
+	if elegibles.is_empty():
+		current = draw_question()
+	else:
+		current = elegibles.pick_random()
+		questions.erase(current)
 
 
 func rollback_question():

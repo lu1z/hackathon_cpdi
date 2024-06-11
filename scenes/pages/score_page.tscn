@@ -56,7 +56,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_gr2gb")
 
-[node name="ResourcesGroup" type="HBoxContainer" parent="."]
+[node name="ResourcesGroup" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -65,15 +65,15 @@ grow_horizontal = 2
 
 [node name="MoneyLabel" type="Label" parent="ResourcesGroup"]
 layout_mode = 2
-size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "200000"
+horizontal_alignment = 1
 
 [node name="RevenueLabel" type="Label" parent="ResourcesGroup"]
 layout_mode = 2
-size_flags_horizontal = 10
 theme_override_font_sizes/font_size = 64
 text = "10000"
+horizontal_alignment = 1
 
 [node name="ESGGroup" type="VBoxContainer" parent="."]
 layout_mode = 1

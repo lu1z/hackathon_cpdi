@@ -101,7 +101,7 @@ func check_lose_condition():
 	var env = get_current_group_score(ESG.ESG_GROUPS.ENVIROMENT) <= DEFAULT_LOSE_CONDITION
 	var soc = get_current_group_score(ESG.ESG_GROUPS.SOCIAL) <= DEFAULT_LOSE_CONDITION
 	var gov = get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE) <= DEFAULT_LOSE_CONDITION
-	return env or soc or gov or debt == 0
+	return env or soc or gov or debt == 0 or QuestionManager.questions.is_empty()
 
 
 func print_score():
