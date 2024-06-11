@@ -17,38 +17,38 @@ static var no_social = range(32, 38)
 static var no_governance = range(38, 48)
 
 
-#static var enviroment_table = [
-	#"Combate ao desmatamento",
-	#"Preservação da biodiversidade",
-	#"Descarte adequado de dejetos e reciclagem",
-	#"Combate ao aquecimento global e redução da emissão de carbono",
-	#"Gestão de resíduos",
-	#"Diminuição da poluição",
-	#"Consumo consciente da água",
-	#"Uso de energias renováveis",
-#]
-#
-#static var social_table = [
-	#"Representatividade e inclusão de minorias",
-	#"Valorização dos funcionários",
-	#"Combate a questões como preconceitos, misoginia, assédio sexual...",
-	#"Cumprimento das leis trabalhistas e dos direitos humanos",
-	#"Combate a trabalhos infantis e análogos à escravidão",
-	#"Criação e desenvolvimento de projetos sociais",
-#]
-#
-#static var governance_table = [
-	#"Adoção de boas práticas administrativas",
-	#"Criação de canais de denúncia",
-	#"Independência do conselho administrativo",
-	#"Política de transparência",
-	#"Apresentação de relatórios financeiros",
-	#"Diversidade no conselho",
-	#"Responsabilidade fiscal",
-	#"Combate a corrupção",
-	#"Gestão de riscos",
-	#"Critérios transparentes sobre remuneração e planos de carreira"
-#]
+static var enviroment_table = [
+	"Combate ao desmatamento",
+	"Preservação da biodiversidade",
+	"Descarte adequado de dejetos e reciclagem",
+	"Combate ao aquecimento global e redução da emissão de carbono",
+	"Gestão de resíduos",
+	"Diminuição da poluição",
+	"Consumo consciente da água",
+	"Uso de energias renováveis",
+]
+
+static var social_table = [
+	"Representatividade e inclusão de minorias",
+	"Valorização dos funcionários",
+	"Combate a questões como preconceitos, misoginia, assédio sexual...",
+	"Cumprimento das leis trabalhistas e dos direitos humanos",
+	"Combate a trabalhos infantis e análogos à escravidão",
+	"Criação e desenvolvimento de projetos sociais",
+]
+
+static var governance_table = [
+	"Adoção de boas práticas administrativas",
+	"Criação de canais de denúncia",
+	"Independência do conselho administrativo",
+	"Política de transparência",
+	"Apresentação de relatórios financeiros",
+	"Diversidade no conselho",
+	"Responsabilidade fiscal",
+	"Combate a corrupção",
+	"Gestão de riscos",
+	"Critérios transparentes sobre remuneração e planos de carreira"
+]
 
 
 static var esg_half_table = [

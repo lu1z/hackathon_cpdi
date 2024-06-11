@@ -6,12 +6,24 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	$Topics.remove_child($Topics/LabelTopic1)
+	$Topics.remove_child($Topics/LabelTopic2)
+	$Topics.remove_child($Topics/LabelTopic3)
+	var topics
+	match SettingsManager.params:
+		ESG.ESG_GROUPS.ENVIROMENT:
+			$LabelTitle.text = \"Ambiental\"
+			topics = ESG.yes_enviroment
+		ESG.ESG_GROUPS.SOCIAL:
+			$LabelTitle.text = \"Social\"
+			topics = ESG.yes_social
+		ESG.ESG_GROUPS.GOVERNANCE:
+			topics = ESG.yes_governance
+			$LabelTitle.text = \"Governança\"
+	for t in topics:
+		var node = LinkButton.new()
+		node.text = ESG.esg_half_table[t] + \": \" + str(ScoreManager.score[t])
+		$Topics.add_child(node)
 
 
 func _on_button_back_pressed():

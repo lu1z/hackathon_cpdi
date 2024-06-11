@@ -8,16 +8,28 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	$Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	var esg = QuestionManager.current.esg
+	if SettingsManager.answer:
+		$Consequences/LabelConsequence.text = QuestionManager.current.yes
+		$Consequences/ESGSumary/E.text = str(esg.self_group_sum(ESG.yes_enviroment))
+		$Consequences/ESGSumary/S.text = str(esg.self_group_sum(ESG.yes_social))
+		$Consequences/ESGSumary/G.text = str(esg.self_group_sum(ESG.yes_governance))
+	else:
+		$Consequences/LabelConsequence.text = QuestionManager.current.no
+		$Consequences/ESGSumary/E.text = str(esg.self_group_sum(ESG.no_enviroment))
+		$Consequences/ESGSumary/S.text = str(esg.self_group_sum(ESG.no_social))
+		$Consequences/ESGSumary/G.text = str(esg.self_group_sum(ESG.no_governance))
 
 
 func _on_continue_button_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
+	if ScoreManager.check_win_condition():
+		SettingsManager.game_result = true
+		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
+	if ScoreManager.check_win_condition():
+		SettingsManager.game_result = false
+		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
+	return get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
 "
 
 [node name="ConsequencePage" type="Control"]

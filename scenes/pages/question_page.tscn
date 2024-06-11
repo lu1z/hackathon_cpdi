@@ -8,23 +8,35 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	if ScoreManager.cant_skip():
+		$DecisionButtons/SkipComponent.visible = false
+	$QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
+	$DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
+	$QuestionInformation/QuestionLabel.text = QuestionManager.current.question
+	$QuestionInformation/CostLabel.text = \"R$ \" + str(QuestionManager.current.cost) + \".00\"
+	$QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	# Debug purposes
+	print(\"Chosen question: \" + QuestionManager.current.id)
 
 
 func _on_button_yes_pressed():
+	SettingsManager.answer = true
+	ScoreManager.apply_cost(QuestionManager.current.cost)
+	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.yes_group)
+	QuestionManager.current.action.execute()
 	get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
 
 
 func _on_button_no_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
+	SettingsManager.answer = false
+	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.no_group)
+	get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
 
 
 func _on_button_skip_pressed():
+	ScoreManager.decrement_skip()
+	QuestionManager.rollback_question()
+	GameManager.present_question()
 	get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
 "
 

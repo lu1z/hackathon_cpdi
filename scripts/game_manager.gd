@@ -7,23 +7,10 @@ signal turn_advanced
 var turn: int
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	initialize_game()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
-
-
 func initialize_game():
 	QuestionManager.question_initialize()
 	ScoreManager.score_initialize()
 	turn = 0
-	#$TextureRect/botaoAvancaTurno.pressed.connect(
-		#_on_botao_avanca_turno_pressed, CONNECT_ONE_SHOT
-	#)
 # Debug purposes
 	print("--------------------preturn----------------------")
 	ScoreManager.print_score()

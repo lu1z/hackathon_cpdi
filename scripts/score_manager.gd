@@ -34,6 +34,14 @@ func apply_cost(cost):
 	money += cost 
 
 
+func cant_skip():
+	return skip <= 0
+
+
+func decrement_skip():
+	skip -= 1
+
+
 func get_current_group_score(group: ESG.ESG_GROUPS):
 	match group:
 		ESG.ESG_GROUPS.ENVIROMENT:
