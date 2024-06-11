@@ -8,26 +8,29 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if ScoreManager.is_in_debt():
+		$Acknowledge/LabelDebtStatus.visible = true
+		$Acknowledge/LabelDebtStatus.text = \"Período restante para falência: \" + str(ScoreManager.debt)
 	$Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
 	var esg = QuestionManager.current.esg
-	if SettingsManager.answer:
+	if GameManager.params:
 		$Consequences/LabelConsequence.text = QuestionManager.current.yes
-		$Consequences/ESGSumary/E.text = str(esg.self_group_sum(ESG.yes_enviroment))
-		$Consequences/ESGSumary/S.text = str(esg.self_group_sum(ESG.yes_social))
-		$Consequences/ESGSumary/G.text = str(esg.self_group_sum(ESG.yes_governance))
+		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.yes_enviroment))
+		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.yes_social))
+		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.yes_governance))
 	else:
 		$Consequences/LabelConsequence.text = QuestionManager.current.no
-		$Consequences/ESGSumary/E.text = str(esg.self_group_sum(ESG.no_enviroment))
-		$Consequences/ESGSumary/S.text = str(esg.self_group_sum(ESG.no_social))
-		$Consequences/ESGSumary/G.text = str(esg.self_group_sum(ESG.no_governance))
+		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.no_enviroment))
+		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.no_social))
+		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.no_governance))
 
 
 func _on_continue_button_pressed():
 	if ScoreManager.check_win_condition():
-		SettingsManager.game_result = true
+		GameManager.params = true
 		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
-	if ScoreManager.check_win_condition():
-		SettingsManager.game_result = false
+	if ScoreManager.check_lose_condition():
+		GameManager.params = false
 		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
 	return get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
 "
@@ -96,16 +99,27 @@ theme_override_font_sizes/font_size = 64
 text = "+7"
 horizontal_alignment = 1
 
-[node name="ContinueButton" type="Button" parent="."]
+[node name="Acknowledge" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -8.0
+offset_top = -123.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="LabelDebtStatus" type="Label" parent="Acknowledge"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Safe!"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Acknowledge"]
+layout_mode = 2
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 64
 text = "Entendido"
 
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_button_pressed" flags=7]
+[connection signal="pressed" from="Acknowledge/ContinueButton" to="." method="_on_continue_button_pressed" flags=7]

@@ -4,12 +4,16 @@
 script/source = "extends Control
 
 
+func _ready():
+	$Settings/HSliderVolume.value = SettingsManager.volume
+
+
 func _on_button_back_pressed():
 	get_tree().change_scene_to_file(\"res://scenes/pages/start_page.tscn\")
 
 
-func _on_h_slider_volume_drag_ended(value_changed):
-	SettingsManager.volume = value_changed
+func _on_h_slider_volume_drag_ended(_value_changed):
+	SettingsManager.volume = $Settings/HSliderVolume.value
 "
 
 [node name="SettingsPage" type="Control"]
@@ -29,12 +33,6 @@ anchor_right = 1.0
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CheckButton" type="CheckButton" parent="Settings"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 16
-text = "Dark mode"
 
 [node name="HSliderVolume" type="HSlider" parent="Settings"]
 layout_mode = 2

@@ -5,12 +5,15 @@ signal turn_advanced
 
 
 var turn: int
+var params
+var game_id = 1
 
 
 func initialize_game():
 	QuestionManager.question_initialize()
 	ScoreManager.score_initialize()
 	turn = 0
+	game_id += 1
 # Debug purposes
 	print("--------------------preturn----------------------")
 	ScoreManager.print_score()
@@ -20,6 +23,8 @@ func initialize_game():
 func pre_turn():
 	turn += 1
 	GameManager.turn_advanced.emit()
+	if ScoreManager.is_in_debt():
+		ScoreManager.decrement_debt()
 	ScoreManager.apply_revenue()
 	print("------------------turn: " + str(turn) + " ------------------")
 

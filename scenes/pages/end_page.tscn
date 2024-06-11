@@ -6,14 +6,16 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if SettingsManager.game_result:
+	if GameManager.params:
 		$LabelResult.text = \"Venceu!\"
 	else:
 		$LabelResult.text = \"Perdeu!\"
+		if ScoreManager.debt == 0:
+			$EndGameFeedback/LabelEndGameResume.text = \"A empresa declarou falência devido ao acumulo de dívidas. Tente manejar suas escolhas afim de melhorar o ESG e evitar dividas no processo!\"
 	$EndGameFeedback/LabelElapsedTime.text = \"Duração: \" + str(GameManager.turn) + \" meses\"
 
+
 func _on_button_restart_pressed():
-	SettingsManager.game_id += 1
 	get_tree().change_scene_to_file(\"res://scenes/pages/start_page.tscn\")
 "
 
