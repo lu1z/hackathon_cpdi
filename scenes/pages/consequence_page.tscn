@@ -28,11 +28,11 @@ func _ready():
 func _on_continue_button_pressed():
 	if ScoreManager.check_win_condition():
 		GameManager.params = true
-		return await TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"fade\") #get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\") #TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"fade\") 
+		return await TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"shader1\") #get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\") #TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"fade\") 
 	if ScoreManager.check_lose_condition():
 		GameManager.params = false
-		return await TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"fade\") 
-	return await TransitionScene.load_scene(\"res://scenes/pages/score_page.tscn\",\"toward\") 
+		return await TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"shader1\") 
+	return await TransitionScene.load_scene(\"res://scenes/pages/score_page.tscn\",\"shader1\") 
 "
 
 [node name="ConsequencePage" type="Control"]
