@@ -21,6 +21,7 @@ ScoreManager="*res://scripts/score_manager.gd"
 GameManager="*res://scripts/game_manager.gd"
 QuestionManager="*res://scripts/question_manager.gd"
 SettingsManager="*res://scripts/settings_manager.gd"
+TransitionScene="*res://scenes/pages/transition_scene.tscn"
 
 [display]
 

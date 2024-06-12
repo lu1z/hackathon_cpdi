@@ -39,12 +39,14 @@ func _ready():
 func _on_button_next_pressed():
 	GameManager.pre_turn()
 	GameManager.present_question()
-	get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/question_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
 
 
 func _on_esg_button_pressed(group: ESG.ESG_GROUPS):
 	GameManager.params = group
-	get_tree().change_scene_to_file(\"res://scenes/pages/topics_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/topics_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/topics_page.tscn\")
 "
 
 [node name="ScorePage" type="Control"]
