@@ -28,7 +28,8 @@ func _ready():
 
 
 func _on_button_back_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/score_page.tscn\",\"shader4\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
 "
 
 [node name="TopicsPage" type="Control"]

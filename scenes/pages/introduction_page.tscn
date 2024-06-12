@@ -1,13 +1,221 @@
-[gd_scene load_steps=2 format=3 uid="uid://csf7sk2baskw5"]
+[gd_scene load_steps=14 format=3 uid="uid://csf7sk2baskw5"]
+
+[ext_resource type="Texture2D" uid="uid://cs8vyqiltwvjc" path="res://assets/Images/intro/INTRO.png" id="1_kpx4i"]
+[ext_resource type="Texture2D" uid="uid://dgjmwol5c2xvh" path="res://assets/Images/intro/intro1.png" id="2_h5s2n"]
+[ext_resource type="Texture2D" uid="uid://b3qxc3ui4ftae" path="res://assets/Images/intro/intro2.png" id="3_ic1wl"]
+[ext_resource type="Texture2D" uid="uid://dqh78vbl3ff26" path="res://assets/Images/intro/intro3.png" id="3_qunah"]
+[ext_resource type="Texture2D" uid="uid://jdtajxyn67tq" path="res://assets/Images/intro/intro4.png" id="4_7nxn0"]
 
 [sub_resource type="GDScript" id="GDScript_a1hgi"]
 script/source = "extends Control
 
+@onready var animation_player = $FundoIntro/AnimationPlayer
+var currentAnim := \"\"
+
+func _ready():
+	play_anim()
 
 func _on_button_skip_pressed():
-	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader2\")
+	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader4\")
 	#get_tree().change_scene_to_file(\"res://scenes/pages/start_page.tscn\")
+
+
+func _on_button_pressed():
+	pass
+
+func play_anim():
+	currentAnim = animation_player.get_current_animation()
+	animation_player.play(\"introdução\")
+	await animation_player.animation_finished
+	animation_player.play(\"introhist\")
+	await animation_player.animation_finished
+	animation_player.play(\"introhist_2\")
+	await animation_player.animation_finished
+	animation_player.play(\"introhist_3\")
+	await animation_player.animation_finished
+	animation_player.play(\"introhist_4\")
+	await animation_player.animation_finished
+	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader2\")
+
+	
 "
+
+[sub_resource type="Animation" id="Animation_5akm5"]
+resource_name = "introdução"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("1_kpx4i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 2, 3.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_frjkb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_kpx4i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_410yw"]
+resource_name = "introhist"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("2_h5s2n")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nwjcb"]
+resource_name = "introhist_2"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("3_ic1wl")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pfc7y"]
+resource_name = "introhist_3"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("3_qunah")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 7, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_toef0"]
+resource_name = "introhist_4"
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("4_7nxn0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hsm38"]
+_data = {
+"RESET": SubResource("Animation_frjkb"),
+"introdução": SubResource("Animation_5akm5"),
+"introhist": SubResource("Animation_410yw"),
+"introhist_2": SubResource("Animation_nwjcb"),
+"introhist_3": SubResource("Animation_pfc7y"),
+"introhist_4": SubResource("Animation_toef0")
+}
 
 [node name="IntroductionPage" type="Control"]
 layout_mode = 3
@@ -38,4 +246,45 @@ offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="FundoIntro" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.089
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -0.528
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kpx4i")
+expand_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="FundoIntro"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FundoIntro"]
+libraries = {
+"": SubResource("AnimationLibrary_hsm38")
+}
+
+[node name="Button" type="Button" parent="FundoIntro"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -70.0
+offset_right = 50.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Próximo"
+
 [connection signal="pressed" from="ButtonSkip" to="." method="_on_button_skip_pressed" flags=7]
+[connection signal="pressed" from="FundoIntro/Button" to="." method="_on_button_pressed"]
