@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://csf7sk2baskw5"]
+[gd_scene load_steps=13 format=3 uid="uid://csf7sk2baskw5"]
 
 [ext_resource type="Texture2D" uid="uid://cs8vyqiltwvjc" path="res://assets/Images/intro/INTRO.png" id="1_kpx4i"]
-[ext_resource type="Texture2D" uid="uid://dgjmwol5c2xvh" path="res://assets/Images/intro/intro1.png" id="2_h5s2n"]
-[ext_resource type="Texture2D" uid="uid://b3qxc3ui4ftae" path="res://assets/Images/intro/intro2.png" id="3_ic1wl"]
-[ext_resource type="Texture2D" uid="uid://dqh78vbl3ff26" path="res://assets/Images/intro/intro3.png" id="3_qunah"]
-[ext_resource type="Texture2D" uid="uid://jdtajxyn67tq" path="res://assets/Images/intro/intro4.png" id="4_7nxn0"]
+[ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_oh4y6"]
+[ext_resource type="Texture2D" uid="uid://dhtv5mg86fvf2" path="res://assets/Images/intro/gdf.png" id="2_f3sox"]
 
 [sub_resource type="GDScript" id="GDScript_a1hgi"]
 script/source = "extends Control
@@ -35,6 +33,10 @@ func play_anim():
 
 	
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_21grd"]
+font_size = 28
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_frjkb"]
 length = 0.001
@@ -90,6 +92,42 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:flip_h")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(169, 207)]
+}
 
 [sub_resource type="Animation" id="Animation_410yw"]
 resource_name = "introhist"
@@ -97,26 +135,50 @@ length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
+tracks/0/path = NodePath("ColorRect:color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [ExtResource("2_h5s2n")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 7, 8),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_f3sox")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Olá, eu sou o novo CEO da empresa, e.."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(169, 207)]
 }
 
 [sub_resource type="Animation" id="Animation_nwjcb"]
@@ -132,7 +194,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ExtResource("3_ic1wl")]
+"values": [ExtResource("2_f3sox")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -145,6 +207,42 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Aqui, nossa missão é equilibrar as responsabilidades ambientais, sociais e de governança para levar a empresa ao sucesso sustentável"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:label_settings")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("LabelSettings_21grd")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(169, 207)]
 }
 
 [sub_resource type="Animation" id="Animation_pfc7y"]
@@ -160,7 +258,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ExtResource("3_qunah")]
+"values": [ExtResource("2_f3sox")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -173,6 +271,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Cada decisão que eu tomar afetará diretamente nosso desempenho nessas áreas."]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(174, 199)]
 }
 
 [sub_resource type="Animation" id="Animation_toef0"]
@@ -188,7 +310,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [ExtResource("4_7nxn0")]
+"values": [ExtResource("2_f3sox")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -201,6 +323,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Vamos trabalhar juntos para garantir que tomamos as melhores decisões para um futuro sustentavel"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsm38"]
@@ -220,35 +354,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_oh4y6")
 script = SubResource("GDScript_a1hgi")
-
-[node name="ButtonSkip" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 31.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 64
-text = "Pular introdução"
-
-[node name="VideoStreamPlayerContent" type="VideoStreamPlayer" parent="."]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -64.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="FundoIntro" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.089
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -0.528
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_kpx4i")
@@ -263,9 +376,39 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
 
+[node name="Label" type="Label" parent="FundoIntro"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.261
+anchor_top = 0.18
+anchor_right = 0.928827
+anchor_bottom = 0.433417
+offset_left = -0.128006
+offset_top = -0.360016
+offset_right = 0.119934
+offset_bottom = -0.296021
+grow_horizontal = 2
+grow_vertical = 2
+text = "Aqui, nossa missão é equilibrar as responsabilidades ambientais, sociais e de governança para levar a empresa ao sucesso sustentável"
+label_settings = SubResource("LabelSettings_21grd")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+text_direction = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="FundoIntro"]
 libraries = {
 "": SubResource("AnimationLibrary_hsm38")
 }
+
+[node name="ButtonSkip" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "Pular introdução"
 
 [connection signal="pressed" from="ButtonSkip" to="." method="_on_button_skip_pressed" flags=7]

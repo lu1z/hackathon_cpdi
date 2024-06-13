@@ -7,8 +7,8 @@ extends CanvasLayer
 func load_scene(target_scene,animation):
 	animatransition.play(animation)
 	await animatransition.animation_finished
-	get_tree().change_scene_to_file(target_scene)
 	animatransition.play("RESET")
+	get_tree().change_scene_to_file(target_scene)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
