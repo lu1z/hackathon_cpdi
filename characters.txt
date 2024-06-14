@@ -1,0 +1,9 @@
+mariana_rh,Mariana,res://assets/characters/mariana_rh.png
+francisco_rh,Francisco,res://assets/characters/francisco_rh.png
+rafael_financeiro,Rafael,res://assets/characters/rafael_financeiro.png
+karla_financeiro,Karla,res://assets/characters/karla_financeiro.png
+bruno_marketing,Bruno,res://assets/characters/bruno_marketing.png
+daniela_marketing,Daniela,res://assets/characters/daniela_marketing.png
+eliane_tecnologia,Eliane,res://assets/characters/eliane_tecnologia.png
+jonas_tecnologia,Jonas,res://assets/characters/jonas_tecnologia.png
+cristina_marketing,Cristina,res://assets/characters/cristina_marketing.png

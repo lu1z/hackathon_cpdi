@@ -14,7 +14,8 @@ func _ready():
 	$DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
 	$QuestionInformation/QuestionLabel.text = QuestionManager.current.question
 	$QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
-	$QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	$QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
+	$QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
 	# Debug purposes
 	print(\"Chosen question: \" + QuestionManager.current.id)
 
