@@ -1,69 +1,58 @@
-class_name GameManager extends Control
+extends Node
 
 
 signal turn_advanced
 
 
-static var myself = new()
-static var question_manager: QuestionManager
-static var score_manager: ScoreManager
-static var turn: int
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	initialize_game()
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+var turn: int
+var params
+var game_id = 1
 
 
 func initialize_game():
+	QuestionManager.question_initialize()
+	ScoreManager.score_initialize()
 	turn = 0
-	question_manager = QuestionManager.new()
-	score_manager = ScoreManager.new()
-	$TextureRect/botaoAvancaTurno.pressed.connect(
-		_on_botao_avanca_turno_pressed, CONNECT_ONE_SHOT
-	)
+	game_id += 1
 # Debug purposes
 	print("--------------------preturn----------------------")
-	score_manager.print_score()
+	ScoreManager.print_score()
 	print("-----------------preturn-ended-------------------")
 
 
 func pre_turn():
 	turn += 1
-	myself.turn_advanced.emit()
-	score_manager.apply_revenue()
+	GameManager.turn_advanced.emit()
+	if ScoreManager.is_in_debt():
+		ScoreManager.decrement_debt()
+	ScoreManager.apply_revenue()
 	print("------------------turn: " + str(turn) + " ------------------")
 
 
 func present_question():
-	var bad_luck_protection = score_manager.check_bias_necessity()
+	var bad_luck_protection = ScoreManager.check_bias_necessity()
 	if bad_luck_protection < 0:
-		return question_manager.draw_question()
-	question_manager.draw_question_with_bias(
+		return QuestionManager.draw_question()
+	QuestionManager.draw_question_with_bias(
 		bad_luck_protection,
-		score_manager.DEFAULT_BIAS_MAGNITUDE
+		ScoreManager.DEFAULT_BIAS_MAGNITUDE
 	)
 #debug purposes
 	match bad_luck_protection:
 		0:
 			print("-------Triggered Enviroment bias---------")
-			print("Enviroment yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_enviroment) ) )
-			print("Enviroment no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_enviroment) ) )
+			print("Enviroment yes sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.yes_enviroment) ) )
+			print("Enviroment no  sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.no_enviroment) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
 		1:
 			print("-------Triggered Social bias---------")
-			print("Social yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_social) ) )
-			print("Social no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_social) ) )
+			print("Social yes sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.yes_social) ) )
+			print("Social no  sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.no_social) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
 		2:
 			print("-------Triggered Governance bias---------")
-			print("Governance yes sum: " + str(question_manager.current.esg.self_group_sum(ESG.yes_governance) ) )
-			print("Governance no  sum: " + str(question_manager.current.esg.self_group_sum(ESG.no_governance) ) )
+			print("Governance yes sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.yes_governance) ) )
+			print("Governance no  sum: " + str(QuestionManager.current.esg.self_group_sum(ESG.no_governance) ) )
 			print("-------TURN PARITY: " + str(turn % 2))
 
 
@@ -72,33 +61,27 @@ func post_turn():
 	#change this to native signal value_changed(value)
 	#$TextureRect/botaoE/progressBarE.value = score_manager.get_current_enviroment_score()
 	print("------------------endturn: " + str(turn) + " ------------------")
-	if score_manager.check_win_condition():
+	if ScoreManager.check_win_condition():
 		print("---------------------Won-------------------")
-	if score_manager.check_lose_condition():
+	if ScoreManager.check_lose_condition():
 		print("---------------------Lost-------------------")
 
 
-func rollback_question():
-	var old = question_manager.current
-	present_question()
-	question_manager.questions.append(old)
-	question_manager.shuffle_questions()
-
-
 func _on_botao_pergunta_skip_pressed():
-	rollback_question()
+	QuestionManager.rollback_question()
+	present_question()
+	
 
 # connect to yes button
 func _on_botao_pergunta_nao_pressed():
-	score_manager.apply_scores(question_manager.current.esg.esg, ESG.no_group)
+	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.no_group)
 	post_turn()
-
 
 # connect to yes button
 func _on_botao_pergunta_sim_pressed():
-	score_manager.apply_cost(question_manager.current.cost)
-	score_manager.apply_scores(question_manager.current.esg.esg, ESG.yes_group)
-	question_manager.current.action.execute()
+	ScoreManager.apply_cost(QuestionManager.current.cost)
+	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.yes_group)
+	QuestionManager.current.action.execute()
 	post_turn()
 
 
@@ -107,4 +90,4 @@ func _on_botao_avanca_turno_pressed():
 	pre_turn()
 	present_question()
 	# Debug purposes
-	print("Chosen question: " + question_manager.current.id)
+	print("Chosen question: " + QuestionManager.current.id)

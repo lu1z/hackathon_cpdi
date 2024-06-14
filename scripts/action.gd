@@ -19,25 +19,25 @@ static func do_nothing(_arg1, _arg2, _arg3, _arg4):
 static func change_revenue(_arg1, _arg2, _arg3, _arg4):
 	var value = int(_arg1)
 	var period = int(_arg2)
-	GameManager.score_manager.revenue += value
+	ScoreManager.revenue += value
 	if period == 0:
 		return
 	var turn_timer = func(tt, p):
-						GameManager.myself.turn_advanced.disconnect(tt)
+						GameManager.turn_advanced.disconnect(tt)
 						if p <= 1:
-							GameManager.score_manager.revenue -= value
+							ScoreManager.revenue -= value
 						else:
-							GameManager.myself.turn_advanced.connect(
+							GameManager.turn_advanced.connect(
 								tt.bind(tt, p - 1)
 							)
-	GameManager.myself.turn_advanced.connect(
+	GameManager.turn_advanced.connect(
 		turn_timer.bind(turn_timer, period)
 	)
 
 
 static func change_skips(_arg1, _arg2, _arg3, _arg4):
 	var value = int(_arg1)
-	GameManager.score_manager.skip += value
+	ScoreManager.skip += value
 
 
 static func change_skips_and_revenue(_arg1, _arg2, _arg3, _arg4):

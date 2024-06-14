@@ -1,0 +1,149 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcp0vwja1powp"]
+
+[ext_resource type="PackedScene" uid="uid://bfby6m5hn7km7" path="res://scenes/components/e_s_g_component.tscn" id="1_ulsed"]
+
+[sub_resource type="GDScript" id="GDScript_gr2gb"]
+script/source = "extends Control
+
+
+func update_progress_bar(negative, positive, value):
+	if value <= 0:
+		positive.value = 0
+		negative.value = (value * 100) / ScoreManager.DEFAULT_LOSE_CONDITION
+	else:
+		positive.value = (value * 100) / ScoreManager.DEFAULT_WIN_CONDITION
+		negative.value = 0
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$ResourcesGroup/MoneyLabel.text = \"Capital: R$ \" + str(ScoreManager.money)
+	$ResourcesGroup/RevenueLabel.text = \"Rendimento: R$ \" + str(ScoreManager.revenue)
+	update_progress_bar(
+		$ESGGroup/EnviromentGroup/NegativeProgressBar,
+		$ESGGroup/EnviromentGroup/PositiveProgressBar,
+		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.ENVIROMENT),
+	)
+	update_progress_bar(
+		$ESGGroup/SocialGroup/NegativeProgressBar,
+		$ESGGroup/SocialGroup/PositiveProgressBar,
+		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.SOCIAL),
+	)
+	update_progress_bar(
+		$ESGGroup/GovernanceGroup/NegativeProgressBar,
+		$ESGGroup/GovernanceGroup/PositiveProgressBar,
+		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE),
+	)
+
+
+func _on_button_next_pressed():
+	GameManager.pre_turn()
+	GameManager.present_question()
+	get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
+
+
+func _on_esg_button_pressed(group: ESG.ESG_GROUPS):
+	GameManager.params = group
+	get_tree().change_scene_to_file(\"res://scenes/pages/topics_page.tscn\")
+"
+
+[node name="ScorePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_gr2gb")
+
+[node name="ResourcesGroup" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+
+[node name="MoneyLabel" type="Label" parent="ResourcesGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "200000"
+horizontal_alignment = 1
+
+[node name="RevenueLabel" type="Label" parent="ResourcesGroup"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "10000"
+horizontal_alignment = 1
+
+[node name="ESGGroup" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -142.0
+offset_bottom = 142.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EnviromentGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+layout_mode = 2
+
+[node name="NegativeProgressBar" parent="ESGGroup/EnviromentGroup" index="0"]
+value = 20.0
+
+[node name="ESGButton" parent="ESGGroup/EnviromentGroup" index="1"]
+text = "A"
+
+[node name="PositiveProgressBar" parent="ESGGroup/EnviromentGroup" index="2"]
+value = 70.0
+
+[node name="HSeparator" type="HSeparator" parent="ESGGroup"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="SocialGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+layout_mode = 2
+
+[node name="NegativeProgressBar" parent="ESGGroup/SocialGroup" index="0"]
+value = 90.0
+
+[node name="ESGButton" parent="ESGGroup/SocialGroup" index="1"]
+text = "S"
+
+[node name="PositiveProgressBar" parent="ESGGroup/SocialGroup" index="2"]
+value = 10.0
+
+[node name="HSeparator2" type="HSeparator" parent="ESGGroup"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="GovernanceGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+layout_mode = 2
+
+[node name="NegativeProgressBar" parent="ESGGroup/GovernanceGroup" index="0"]
+value = 50.0
+
+[node name="ESGButton" parent="ESGGroup/GovernanceGroup" index="1"]
+text = "G"
+
+[node name="ButtonNext" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 64
+text = "Próxima"
+
+[connection signal="pressed" from="ESGGroup/EnviromentGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [0]]
+[connection signal="pressed" from="ESGGroup/SocialGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [1]]
+[connection signal="pressed" from="ESGGroup/GovernanceGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [2]]
+[connection signal="pressed" from="ButtonNext" to="." method="_on_button_next_pressed" flags=7]
+
+[editable path="ESGGroup/EnviromentGroup"]
+[editable path="ESGGroup/SocialGroup"]
+[editable path="ESGGroup/GovernanceGroup"]

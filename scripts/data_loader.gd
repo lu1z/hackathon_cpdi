@@ -22,15 +22,12 @@ func load_file():
 func load_config_file():
 	var q_data = []
 	var config = ConfigFile.new()
-
 	# Load data from a file.
 	var err = config.load(QUESTIONS_FILE_PATH)
-
 	# If the file didn't load, ignore it.
 	if err != OK:
 		print("Não foi possivel abrir o aquivo: ", QUESTIONS_FILE_PATH)
 		return
-
 	# Iterate over all sections.
 	for q in config.get_sections():
 		# Fetch the data for each section.
@@ -48,7 +45,27 @@ func load_json_file():
 	pass
 
 
+func load_csv_file_characters():
+	var file = FileAccess.open(CHARACTERS_FILE_PATH, FileAccess.READ)
+	if file == null:
+		print(FileAccess.get_open_error())
+		return
+	var q_data = {}
+	while not file.eof_reached():
+		var line = file.get_csv_line()
+		if line.size() <= 1:
+			continue
+		var character = Character.new()
+		character.id = line[0]
+		character.display_name = line[1]
+		character.asset_image = line[2]
+		q_data.merge({ character.id: character })
+	file.close()
+	return q_data
+
+
 func load_csv_file():
+	var characters = load_csv_file_characters()
 	var file = FileAccess.open(QUESTIONS_FILE_PATH, FileAccess.READ)
 	if file == null:
 		print(FileAccess.get_open_error())
@@ -74,9 +91,7 @@ func load_csv_file():
 		question.action = action
 		question.id = StringName(line[last])
 		last -= 1
-		var character = Character.new()
-		character.id = StringName(line[last])
-		question.character = character
+		question.character = characters.get(line[last])
 		last -= 1
 		question.question = StringName(line[last])
 		last -= 1

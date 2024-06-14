@@ -1,0 +1,125 @@
+[gd_scene load_steps=3 format=3 uid="uid://b45yvtmwg3bkc"]
+
+[ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_nyy2w"]
+
+[sub_resource type="GDScript" id="GDScript_q28hg"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if ScoreManager.is_in_debt():
+		$Acknowledge/LabelDebtStatus.visible = true
+		$Acknowledge/LabelDebtStatus.text = \"Período restante para falência: \" + str(ScoreManager.debt)
+	$Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	var esg = QuestionManager.current.esg
+	if GameManager.params:
+		$Consequences/LabelConsequence.text = QuestionManager.current.yes
+		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.yes_enviroment))
+		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.yes_social))
+		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.yes_governance))
+	else:
+		$Consequences/LabelConsequence.text = QuestionManager.current.no
+		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.no_enviroment))
+		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.no_social))
+		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.no_governance))
+
+
+func _on_continue_button_pressed():
+	if ScoreManager.check_win_condition():
+		GameManager.params = true
+		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
+	if ScoreManager.check_lose_condition():
+		GameManager.params = false
+		return get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\")
+	return get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
+"
+
+[node name="ConsequencePage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_q28hg")
+
+[node name="Consequences" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="CharacterComponent" parent="Consequences" instance=ExtResource("1_nyy2w")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Consequences"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="LabelConsequence" type="Label" parent="Consequences"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor rhoncus dolor purus non enim praesent elementum. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Mauris in aliquam sem fringilla ut morbi tincidunt. Blandit turpis cursus in hac habitasse platea dictumst quisque. Aliquet nibh praesent tristique magna sit amet."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="Consequences"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="ESGSumary" type="HBoxContainer" parent="Consequences"]
+layout_mode = 2
+
+[node name="E" type="Label" parent="Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "+5"
+horizontal_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Consequences/ESGSumary"]
+layout_mode = 2
+
+[node name="S" type="Label" parent="Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "-3"
+horizontal_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Consequences/ESGSumary"]
+layout_mode = 2
+
+[node name="G" type="Label" parent="Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "+7"
+horizontal_alignment = 1
+
+[node name="Acknowledge" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -123.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="LabelDebtStatus" type="Label" parent="Acknowledge"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Safe!"
+horizontal_alignment = 1
+
+[node name="ContinueButton" type="Button" parent="Acknowledge"]
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 64
+text = "Entendido"
+
+[connection signal="pressed" from="Acknowledge/ContinueButton" to="." method="_on_continue_button_pressed" flags=7]
