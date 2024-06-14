@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcp0vwja1powp"]
+[gd_scene load_steps=9 format=3 uid="uid://dcp0vwja1powp"]
 
+[ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_eybiu"]
 [ext_resource type="PackedScene" uid="uid://bfby6m5hn7km7" path="res://scenes/components/e_s_g_component.tscn" id="1_ulsed"]
+[ext_resource type="Texture2D" uid="uid://bvwx2jtc0od0l" path="res://assets/Images/background/1.png" id="2_i3rsk"]
+[ext_resource type="StyleBox" uid="uid://c4kk7wfl4ie75" path="res://assets/temas/progress_negative.tres" id="4_sc55w"]
+[ext_resource type="Texture2D" uid="uid://doo3nq3uvmnnu" path="res://assets/Images/icons/environmental-strategy.png" id="5_q7roa"]
+[ext_resource type="Texture2D" uid="uid://jkywygyibkfd" path="res://assets/Images/icons/inclusion.png" id="6_fxxk7"]
+[ext_resource type="Texture2D" uid="uid://cwpxhni8xrvu5" path="res://assets/Images/corporation.png" id="7_ryaka"]
 
 [sub_resource type="GDScript" id="GDScript_gr2gb"]
 script/source = "extends Control
@@ -17,34 +23,42 @@ func update_progress_bar(negative, positive, value):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ResourcesGroup/MoneyLabel.text = \"Capital: R$ \" + str(ScoreManager.money)
-	$ResourcesGroup/RevenueLabel.text = \"Rendimento: R$ \" + str(ScoreManager.revenue)
+	print(\"ta pronto\")
+	$MarginContainer/ResourcesGroup/MoneyLabel.text = \"Capital: R$ \" + str(ScoreManager.money)
+	$MarginContainer/ResourcesGroup/RevenueLabel.text = \"Rendimento: R$ \" + str(ScoreManager.revenue)
 	update_progress_bar(
-		$ESGGroup/EnviromentGroup/NegativeProgressBar,
-		$ESGGroup/EnviromentGroup/PositiveProgressBar,
+		$MarginContainer2/ESGGroup/EnviromentGroup/NegativeProgressBar,
+		$MarginContainer2/ESGGroup/EnviromentGroup/PositiveProgressBar,
 		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.ENVIROMENT),
-	)
+		)
+	print(\"update_progress_barE\")
 	update_progress_bar(
-		$ESGGroup/SocialGroup/NegativeProgressBar,
-		$ESGGroup/SocialGroup/PositiveProgressBar,
+		$MarginContainer2/ESGGroup/SocialGroup/NegativeProgressBar,
+		$MarginContainer2/ESGGroup/SocialGroup/PositiveProgressBar,
 		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.SOCIAL),
 	)
+	print(\"update_progress_barS\")
 	update_progress_bar(
-		$ESGGroup/GovernanceGroup/NegativeProgressBar,
-		$ESGGroup/GovernanceGroup/PositiveProgressBar,
+		$MarginContainer2/ESGGroup/GovernanceGroup/NegativeProgressBar,
+		$MarginContainer2/ESGGroup/GovernanceGroup/PositiveProgressBar,
 		ScoreManager.get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE),
 	)
+	print(\"update_progress_barG\")
 
 
 func _on_button_next_pressed():
 	GameManager.pre_turn()
 	GameManager.present_question()
-	get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
+	print(\"next buton\")
+	TransitionScene.load_scene(\"res://scenes/pages/question_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
 
 
 func _on_esg_button_pressed(group: ESG.ESG_GROUPS):
 	GameManager.params = group
-	get_tree().change_scene_to_file(\"res://scenes/pages/topics_page.tscn\")
+	print(\"esg buton\")
+	TransitionScene.load_scene(\"res://scenes/pages/topics_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/topics_page.tscn\")
 "
 
 [node name="ScorePage" type="Control"]
@@ -52,98 +66,161 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -2.0
+offset_right = 3.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_eybiu")
 script = SubResource("GDScript_gr2gb")
 
-[node name="ResourcesGroup" type="VBoxContainer" parent="."]
+[node name="background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_i3rsk")
+expand_mode = 1
+
+[node name="ButtonNext" type="Button" parent="."]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 1060.0
+offset_right = 633.0
+offset_bottom = 1145.0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 64
+text = "Próxima"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 88.0
+offset_bottom = 234.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="MoneyLabel" type="Label" parent="ResourcesGroup"]
+[node name="ResourcesGroup" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+alignment = 1
+
+[node name="ButtonExit" type="Button" parent="MarginContainer/ResourcesGroup"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "SAIR"
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "200000"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RevenueLabel" type="Label" parent="ResourcesGroup"]
+[node name="RevenueLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 64
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 40
 text = "10000"
-horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ESGGroup" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/ResourcesGroup/RevenueLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -80.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_q7roa")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -142.0
-offset_bottom = 142.0
+offset_top = -148.0
+offset_bottom = 148.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
 
-[node name="EnviromentGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+[node name="ESGGroup" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme = ExtResource("1_eybiu")
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="EnviromentGroup" parent="MarginContainer2/ESGGroup" instance=ExtResource("1_ulsed")]
 layout_mode = 2
 
-[node name="NegativeProgressBar" parent="ESGGroup/EnviromentGroup" index="0"]
+[node name="NegativeProgressBar" parent="MarginContainer2/ESGGroup/EnviromentGroup" index="0"]
+theme_override_styles/fill = ExtResource("4_sc55w")
 value = 20.0
 
-[node name="ESGButton" parent="ESGGroup/EnviromentGroup" index="1"]
-text = "A"
+[node name="ESGButton" parent="MarginContainer2/ESGGroup/EnviromentGroup" index="1"]
+theme_override_font_sizes/font_size = 20
+text = "Ambiental"
+icon = ExtResource("5_q7roa")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="PositiveProgressBar" parent="ESGGroup/EnviromentGroup" index="2"]
+[node name="PositiveProgressBar" parent="MarginContainer2/ESGGroup/EnviromentGroup" index="2"]
 value = 70.0
 
-[node name="HSeparator" type="HSeparator" parent="ESGGroup"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="SocialGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+[node name="SocialGroup" parent="MarginContainer2/ESGGroup" instance=ExtResource("1_ulsed")]
 layout_mode = 2
 
-[node name="NegativeProgressBar" parent="ESGGroup/SocialGroup" index="0"]
+[node name="NegativeProgressBar" parent="MarginContainer2/ESGGroup/SocialGroup" index="0"]
+theme_override_styles/fill = ExtResource("4_sc55w")
 value = 90.0
 
-[node name="ESGButton" parent="ESGGroup/SocialGroup" index="1"]
-text = "S"
+[node name="ESGButton" parent="MarginContainer2/ESGGroup/SocialGroup" index="1"]
+theme_override_font_sizes/font_size = 20
+text = "Social"
+icon = ExtResource("6_fxxk7")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="PositiveProgressBar" parent="ESGGroup/SocialGroup" index="2"]
+[node name="PositiveProgressBar" parent="MarginContainer2/ESGGroup/SocialGroup" index="2"]
 value = 10.0
 
-[node name="HSeparator2" type="HSeparator" parent="ESGGroup"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="GovernanceGroup" parent="ESGGroup" instance=ExtResource("1_ulsed")]
+[node name="GovernanceGroup" parent="MarginContainer2/ESGGroup" instance=ExtResource("1_ulsed")]
 layout_mode = 2
 
-[node name="NegativeProgressBar" parent="ESGGroup/GovernanceGroup" index="0"]
+[node name="NegativeProgressBar" parent="MarginContainer2/ESGGroup/GovernanceGroup" index="0"]
+theme_override_styles/fill = ExtResource("4_sc55w")
 value = 50.0
 
-[node name="ESGButton" parent="ESGGroup/GovernanceGroup" index="1"]
-text = "G"
+[node name="ESGButton" parent="MarginContainer2/ESGGroup/GovernanceGroup" index="1"]
+theme_override_font_sizes/font_size = 20
+text = "Governância"
+icon = ExtResource("7_ryaka")
+icon_alignment = 1
+vertical_icon_alignment = 0
+expand_icon = true
 
-[node name="ButtonNext" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = -96.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_font_sizes/font_size = 64
-text = "Próxima"
-
-[connection signal="pressed" from="ESGGroup/EnviromentGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [0]]
-[connection signal="pressed" from="ESGGroup/SocialGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [1]]
-[connection signal="pressed" from="ESGGroup/GovernanceGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [2]]
 [connection signal="pressed" from="ButtonNext" to="." method="_on_button_next_pressed" flags=7]
+[connection signal="pressed" from="MarginContainer2/ESGGroup/EnviromentGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [0]]
+[connection signal="pressed" from="MarginContainer2/ESGGroup/SocialGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [1]]
+[connection signal="pressed" from="MarginContainer2/ESGGroup/GovernanceGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [2]]
 
-[editable path="ESGGroup/EnviromentGroup"]
-[editable path="ESGGroup/SocialGroup"]
-[editable path="ESGGroup/GovernanceGroup"]
+[editable path="MarginContainer2/ESGGroup/EnviromentGroup"]
+[editable path="MarginContainer2/ESGGroup/SocialGroup"]
+[editable path="MarginContainer2/ESGGroup/GovernanceGroup"]

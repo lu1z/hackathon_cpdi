@@ -91,3 +91,5 @@ func _on_botao_avanca_turno_pressed():
 	present_question()
 	# Debug purposes
 	print("Chosen question: " + QuestionManager.current.id)
+
+

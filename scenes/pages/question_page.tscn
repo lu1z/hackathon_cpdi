@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://7jibaagoe42o"]
+[gd_scene load_steps=5 format=3 uid="uid://7jibaagoe42o"]
 
 [ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_gkgyr"]
+[ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_nb31d"]
+[ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="2_ab1ck"]
 
 [sub_resource type="GDScript" id="GDScript_lrsps"]
 script/source = "extends Control
@@ -9,13 +11,12 @@ script/source = "extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if ScoreManager.cant_skip():
-		$DecisionButtons/SkipComponent.visible = false
-	$QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
-	$DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
-	$QuestionInformation/QuestionLabel.text = QuestionManager.current.question
-	$QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
-	$QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
-	$QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
+		$MarginContainer/DecisionButtons/SkipComponent.visible = false
+	$MarginContainer2/QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
+	$MarginContainer/DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
+	$MarginContainer2/QuestionInformation/QuestionLabel.text = QuestionManager.current.question
+	$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
+	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.id
 	# Debug purposes
 	print(\"Chosen question: \" + QuestionManager.current.id)
 
@@ -25,20 +26,23 @@ func _on_button_yes_pressed():
 	ScoreManager.apply_cost(QuestionManager.current.cost)
 	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.yes_group)
 	QuestionManager.current.action.execute()
-	get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/consequence_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
 
 
 func _on_button_no_pressed():
 	GameManager.params = false
 	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.no_group)
-	get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/consequence_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/consequence_page.tscn\")
 
 
 func _on_button_skip_pressed():
 	ScoreManager.decrement_skip()
 	QuestionManager.rollback_question()
 	GameManager.present_question()
-	get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
+	TransitionScene.load_scene(\"res://scenes/pages/question_page.tscn\",\"shader1\")
+	#get_tree().change_scene_to_file(\"res://scenes/pages/question_page.tscn\")
 "
 
 [node name="QuestionPage" type="Control"]
@@ -48,87 +52,113 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_nb31d")
 script = SubResource("GDScript_lrsps")
 
-[node name="QuestionInformation" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 767.0
+anchor_bottom = 1.0
 grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ab1ck")
+expand_mode = 5
 
-[node name="CharacterComponent" parent="QuestionInformation" instance=ExtResource("1_gkgyr")]
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+metadata/_edit_use_anchors_ = true
+
+[node name="QuestionInformation" type="VBoxContainer" parent="MarginContainer2"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="QuestionInformation"]
+[node name="CharacterComponent" parent="MarginContainer2/QuestionInformation" instance=ExtResource("1_gkgyr")]
 layout_mode = 2
-theme_override_constants/separation = 25
 
-[node name="QuestionLabel" type="Label" parent="QuestionInformation"]
+[node name="QuestionLabel" type="RichTextLabel" parent="MarginContainer2/QuestionInformation"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+theme_override_font_sizes/normal_font_size = 32
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent. Enim blandit volutpat maecenas volutpat. A lacus vestibulum sed arcu. Semper feugiat nibh sed pulvinar proin gravida hendrerit. Id volutpat lacus laoreet non curabitur gravida arcu ac. Aliquam malesuada bibendum arcu vitae elementum."
-horizontal_alignment = 1
-autowrap_mode = 3
+fit_content = true
+scroll_following = true
 
-[node name="HSeparator2" type="HSeparator" parent="QuestionInformation"]
+[node name="CostLabel" type="Label" parent="MarginContainer2/QuestionInformation"]
 layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="CostLabel" type="Label" parent="QuestionInformation"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 32
 text = "-2000"
 horizontal_alignment = 1
 
-[node name="ActionInformation" type="Label" parent="QuestionInformation"]
+[node name="ActionInformation" type="Label" parent="MarginContainer2/QuestionInformation"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+size_flags_vertical = 6
 theme_override_font_sizes/font_size = 32
 text = "Gafanhoto"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="DecisionButtons" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -174.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="ButtonYes" type="Button" parent="DecisionButtons"]
+[node name="DecisionButtons" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ButtonYes" type="Button" parent="MarginContainer/DecisionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 64
 text = "Sim"
 
-[node name="SkipComponent" type="VBoxContainer" parent="DecisionButtons"]
+[node name="SkipComponent" type="VBoxContainer" parent="MarginContainer/DecisionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 20
 
-[node name="LabelSkips" type="Label" parent="DecisionButtons/SkipComponent"]
+[node name="LabelSkips" type="Label" parent="MarginContainer/DecisionButtons/SkipComponent"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 64
 text = "3"
 horizontal_alignment = 1
 
-[node name="ButtonSkip" type="Button" parent="DecisionButtons/SkipComponent"]
+[node name="ButtonSkip" type="Button" parent="MarginContainer/DecisionButtons/SkipComponent"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 64
 text = "Pula"
 
-[node name="ButtonNo" type="Button" parent="DecisionButtons"]
+[node name="ButtonNo" type="Button" parent="MarginContainer/DecisionButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 64
 text = "Não"
 
-[connection signal="pressed" from="DecisionButtons/ButtonYes" to="." method="_on_button_yes_pressed" flags=7]
-[connection signal="pressed" from="DecisionButtons/SkipComponent/ButtonSkip" to="." method="_on_button_skip_pressed" flags=7]
-[connection signal="pressed" from="DecisionButtons/ButtonNo" to="." method="_on_button_no_pressed" flags=7]
+[connection signal="pressed" from="MarginContainer/DecisionButtons/ButtonYes" to="." method="_on_button_yes_pressed" flags=7]
+[connection signal="pressed" from="MarginContainer/DecisionButtons/SkipComponent/ButtonSkip" to="." method="_on_button_skip_pressed" flags=7]
+[connection signal="pressed" from="MarginContainer/DecisionButtons/ButtonNo" to="." method="_on_button_no_pressed" flags=7]

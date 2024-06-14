@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://1ksvp8qt07tk"]
+[gd_scene load_steps=3 format=3 uid="uid://1ksvp8qt07tk"]
 
-[ext_resource type="Texture2D" uid="uid://wi5ucbkec3py" path="res://assets/icon.svg" id="1_v0ko8"]
+[ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_2i2mx"]
+[ext_resource type="Texture2D" uid="uid://wi5ucbkec3py" path="res://assets/Images/icons/icon.svg" id="1_v0ko8"]
 
 [node name="CharacterComponent" type="HBoxContainer"]
 size_flags_horizontal = 3
+theme = ExtResource("1_2i2mx")
 
 [node name="TextureRectAvatar" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_horizontal = 0
 texture = ExtResource("1_v0ko8")
 
 [node name="LabelName" type="Label" parent="."]
