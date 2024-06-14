@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b45yvtmwg3bkc"]
+[gd_scene load_steps=5 format=3 uid="uid://b45yvtmwg3bkc"]
 
+[ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_4wnkv"]
 [ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_nyy2w"]
+[ext_resource type="Texture2D" uid="uid://bvwx2jtc0od0l" path="res://assets/Images/background/1.png" id="2_21ioo"]
 
 [sub_resource type="GDScript" id="GDScript_q28hg"]
 script/source = "extends Control
@@ -11,18 +13,18 @@ func _ready():
 	if ScoreManager.is_in_debt():
 		$Acknowledge/LabelDebtStatus.visible = true
 		$Acknowledge/LabelDebtStatus.text = \"Período restante para falência: \" + str(ScoreManager.debt)
-	$Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	$MarginContainer/Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
 	var esg = QuestionManager.current.esg
 	if GameManager.params:
-		$Consequences/LabelConsequence.text = QuestionManager.current.yes
-		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.yes_enviroment))
-		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.yes_social))
-		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.yes_governance))
+		$MarginContainer/Consequences/LabelConsequence.text = QuestionManager.current.yes
+		$MarginContainer/Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.yes_enviroment))
+		$MarginContainer/Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.yes_social))
+		$MarginContainer/Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.yes_governance))
 	else:
-		$Consequences/LabelConsequence.text = QuestionManager.current.no
-		$Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.no_enviroment))
-		$Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.no_social))
-		$Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.no_governance))
+		$MarginContainer/Consequences/LabelConsequence.text = QuestionManager.current.no
+		$MarginContainer/Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.no_enviroment))
+		$MarginContainer/Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.no_social))
+		$MarginContainer/Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.no_governance))
 
 
 func _on_continue_button_pressed():
@@ -42,62 +44,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_4wnkv")
 script = SubResource("GDScript_q28hg")
 
-[node name="Consequences" type="VBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-
-[node name="CharacterComponent" parent="Consequences" instance=ExtResource("1_nyy2w")]
-layout_mode = 2
-
-[node name="HSeparator" type="HSeparator" parent="Consequences"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="LabelConsequence" type="Label" parent="Consequences"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor rhoncus dolor purus non enim praesent elementum. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Mauris in aliquam sem fringilla ut morbi tincidunt. Blandit turpis cursus in hac habitasse platea dictumst quisque. Aliquet nibh praesent tristique magna sit amet."
-horizontal_alignment = 1
-autowrap_mode = 3
-
-[node name="HSeparator2" type="HSeparator" parent="Consequences"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="ESGSumary" type="HBoxContainer" parent="Consequences"]
-layout_mode = 2
-
-[node name="E" type="Label" parent="Consequences/ESGSumary"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "+5"
-horizontal_alignment = 1
-
-[node name="VSeparator" type="VSeparator" parent="Consequences/ESGSumary"]
-layout_mode = 2
-
-[node name="S" type="Label" parent="Consequences/ESGSumary"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "-3"
-horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="Consequences/ESGSumary"]
-layout_mode = 2
-
-[node name="G" type="Label" parent="Consequences/ESGSumary"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "+7"
-horizontal_alignment = 1
+grow_vertical = 2
+texture = ExtResource("2_21ioo")
+expand_mode = 5
 
 [node name="Acknowledge" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -121,5 +79,57 @@ layout_mode = 2
 size_flags_vertical = 10
 theme_override_font_sizes/font_size = 64
 text = "Entendido"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 421.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Consequences" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="CharacterComponent" parent="MarginContainer/Consequences" instance=ExtResource("1_nyy2w")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LabelConsequence" type="RichTextLabel" parent="MarginContainer/Consequences"]
+custom_minimum_size = Vector2(0, 500)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 10.14
+theme_override_font_sizes/normal_font_size = 25
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor rhoncus dolor purus non enim praesent elementum. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Mauris in aliquam sem fringilla ut morbi tincidunt. Blandit turpis cursus in hac habitasse platea dictumst quisque. Aliquet nibh praesent tristique magna sit amet."
+
+[node name="ESGSumary" type="HBoxContainer" parent="MarginContainer/Consequences"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="E" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "+5"
+horizontal_alignment = 1
+
+[node name="S" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "-3"
+horizontal_alignment = 1
+
+[node name="G" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "+7"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="Acknowledge/ContinueButton" to="." method="_on_continue_button_pressed" flags=7]
