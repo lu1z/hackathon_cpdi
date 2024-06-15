@@ -14,7 +14,7 @@ func _ready():
 	play_anim()
 
 func _on_button_skip_pressed():
-	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"toward\")
+	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader1\")
 	#get_tree().change_scene_to_file(\"res://scenes/pages/start_page.tscn\")
 
 func play_anim():
@@ -29,9 +29,8 @@ func play_anim():
 	await animation_player.animation_finished
 	animation_player.play(\"introhist_4\")
 	await animation_player.animation_finished
-	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader2\")
+	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader1\")
 
-	
 "
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6jfhr"]
@@ -77,6 +76,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [""]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
 }
 
 [sub_resource type="Animation" id="Animation_5akm5"]
@@ -142,6 +153,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(169, 207)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
+}
 
 [sub_resource type="Animation" id="Animation_410yw"]
 resource_name = "introhist"
@@ -194,6 +217,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(172, 180)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
+}
 
 [sub_resource type="Animation" id="Animation_nwjcb"]
 resource_name = "introhist_2"
@@ -233,6 +268,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Aqui, nossa missão é equilibrar as responsabilidades ambientais, sociais e de governança para levar a empresa ao sucesso sustentável"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
 }
 
 [sub_resource type="Animation" id="Animation_pfc7y"]
@@ -274,6 +321,18 @@ tracks/2/keys = {
 "update": 1,
 "values": ["Cada decisão que eu tomar afetará diretamente nosso desempenho nessas áreas."]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
+}
 
 [sub_resource type="Animation" id="Animation_toef0"]
 resource_name = "introhist_4"
@@ -313,6 +372,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["Vamos trabalhar juntos para garantir que tomamos as melhores decisões para um futuro sustentavel"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:size")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(435, 349)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hsm38"]
@@ -357,14 +428,14 @@ color = Color(0, 0, 0, 0)
 [node name="Label" type="Label" parent="FundoIntro"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.265432
-anchor_top = 0.15625
-anchor_right = 0.873457
-anchor_bottom = 0.459201
-offset_left = 862.0
-offset_top = 919.0
-offset_right = 2832.0
-offset_bottom = 2664.0
+anchor_left = -2.71142
+anchor_top = -1.35851
+anchor_right = -2.71142
+anchor_bottom = -1.35851
+offset_left = -2953.0
+offset_top = -2936.0
+offset_right = -2518.0
+offset_bottom = -2587.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_oh4y6")
