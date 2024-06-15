@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0w8qc4betwwx"]
+[gd_scene load_steps=13 format=3 uid="uid://csx8cg2cf6orw"]
 
 [ext_resource type="Script" path="res://scripts/transitionScene.gd" id="1_a5xpx"]
 [ext_resource type="Shader" uid="uid://snqbikhwrpec" path="res://assets/Shaders/Shaders_Transition.tres" id="2_4hnyi"]
@@ -472,8 +472,8 @@ material = SubResource("ShaderMaterial_kcemh")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2592.0
-offset_bottom = 4608.0
+offset_right = 4536.0
+offset_bottom = 8064.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6

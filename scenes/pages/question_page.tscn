@@ -16,8 +16,8 @@ func _ready():
 	$MarginContainer/DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
 	$MarginContainer2/QuestionInformation/QuestionLabel.text = QuestionManager.current.question
 	$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
-	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.id
-	# Debug purposes
+	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
+	$MarginContainer2/QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
 	print(\"Chosen question: \" + QuestionManager.current.id)
 
 

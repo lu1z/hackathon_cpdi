@@ -13,7 +13,8 @@ func _ready():
 	if ScoreManager.is_in_debt():
 		$Acknowledge/LabelDebtStatus.visible = true
 		$Acknowledge/LabelDebtStatus.text = \"Período restante para falência: \" + str(ScoreManager.debt)
-	$MarginContainer/Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.id
+	$MarginContainer/Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
+	$MarginContainer/Consequences/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
 	var esg = QuestionManager.current.esg
 	if GameManager.params:
 		$MarginContainer/Consequences/LabelConsequence.text = QuestionManager.current.yes
