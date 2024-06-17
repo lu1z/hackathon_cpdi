@@ -15,7 +15,11 @@ func _ready():
 	$MarginContainer2/QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
 	$MarginContainer/DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
 	$MarginContainer2/QuestionInformation/QuestionLabel.text = QuestionManager.current.question
-	$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
+	$MarginContainer2/QuestionInformation/CostLabel.text = \"Irrelevante\"
+	if QuestionManager.current.cost < 0:
+		$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
+	if QuestionManager.current.cost > 0:
+		$MarginContainer2/QuestionInformation/CostLabel.text = \"Bônus: R$ \" + str(QuestionManager.current.cost)
 	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
 	$MarginContainer2/QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
 	load(\"res://scenes/components/character_component.tscn\")
