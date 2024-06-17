@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_vvx8d"]
 [ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="2_vfqu6"]
+[ext_resource type="Theme" uid="uid://cs6vblrbydtv6" path="res://scenes/components/temaTopics.tres" id="3_7rqgn"]
 
 [sub_resource type="GDScript" id="GDScript_e7rrv"]
 script/source = "extends Control
@@ -10,9 +11,7 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Topics.remove_child($Topics/LabelTopic1)
-	$Topics.remove_child($Topics/LabelTopic2)
-	$Topics.remove_child($Topics/LabelTopic3)
+	
 	var topics
 	match GameManager.params:
 		ESG.ESG_GROUPS.ENVIROMENT:
@@ -24,20 +23,24 @@ func _ready():
 		ESG.ESG_GROUPS.GOVERNANCE:
 			topics = ESG.yes_governance
 			$LabelTitle.text = \"Governança\"
+	
 	for t in topics:
-		var node = LinkButton.new()
-		node.add_theme_font_size_override(\"font_size\", 32)
-		node.text = ESG.esg_half_table[t] + \": \" + str(ScoreManager.score[t])
+		var scene = load(\"res://scenes/components/topic_component.tscn\")
+		var instance = scene.instantiate()
+		instance.get_node(\"topicComponent/LabelTopico\").text = ESG.esg_half_table[t]
+		instance.get_node(\"topicComponent/LabelNum\").text = str(ScoreManager.score[t])
+		$Topics.add_child(instance)
 		
-		$Topics.add_child(node)
+		#texto.text = ESG.esg_half_table[t]
+
+
+#str(ScoreManager.score[t])
 
 
 func _on_button_back_pressed():
 	TransitionScene.load_scene(\"res://scenes/pages/score_page.tscn\",\"shader4\")
 	#get_tree().change_scene_to_file(\"res://scenes/pages/score_page.tscn\")
 "
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6b3u4"]
 
 [node name="TopicsPage" type="Control"]
 layout_mode = 3
@@ -79,41 +82,7 @@ offset_top = -45.0
 offset_bottom = 45.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_vvx8d")
-
-[node name="LabelTopic2" type="Label" parent="Topics"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
-text = "Topic2: 25"
-horizontal_alignment = 1
-
-[node name="Button" type="Button" parent="Topics/LabelTopic2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "AKDJSFAKSJDÇAKFSDL"
-flat = true
-
-[node name="LabelTopic3" type="Label" parent="Topics/LabelTopic2/Button"]
-layout_mode = 1
-offset_right = 184.0
-offset_bottom = 48.0
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
-theme_override_styles/normal = SubResource("StyleBoxEmpty_6b3u4")
-text = "Topic3: 25"
-horizontal_alignment = 1
-
-[node name="LabelTopic1" type="LinkButton" parent="Topics"]
-layout_mode = 2
-theme = ExtResource("1_vvx8d")
-theme_override_font_sizes/font_size = 32
-text = "Topic1: 25"
-underline = 2
+theme = ExtResource("3_7rqgn")
 
 [node name="ButtonBack" type="Button" parent="."]
 layout_mode = 1
