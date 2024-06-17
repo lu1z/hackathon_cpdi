@@ -18,6 +18,7 @@ func _ready():
 	$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
 	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
 	$MarginContainer2/QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
+	load(\"res://scenes/components/character_component.tscn\")
 	print(\"Chosen question: \" + QuestionManager.current.id)
 
 
