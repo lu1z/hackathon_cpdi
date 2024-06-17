@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcp0vwja1powp"]
+[gd_scene load_steps=10 format=3 uid="uid://dcp0vwja1powp"]
 
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_eybiu"]
 [ext_resource type="PackedScene" uid="uid://bfby6m5hn7km7" path="res://scenes/components/e_s_g_component.tscn" id="1_ulsed"]
 [ext_resource type="Texture2D" uid="uid://bvwx2jtc0od0l" path="res://assets/Images/background/1.png" id="2_i3rsk"]
+[ext_resource type="Theme" uid="uid://b0h6dkim6mpq2" path="res://assets/temas/temaTopics.tres" id="3_3ky6y"]
 [ext_resource type="StyleBox" uid="uid://c4kk7wfl4ie75" path="res://assets/temas/progress_negative.tres" id="4_sc55w"]
 [ext_resource type="Texture2D" uid="uid://doo3nq3uvmnnu" path="res://assets/Images/icons/environmental-strategy.png" id="5_q7roa"]
 [ext_resource type="Texture2D" uid="uid://jkywygyibkfd" path="res://assets/Images/icons/inclusion.png" id="6_fxxk7"]
-[ext_resource type="Texture2D" uid="uid://cwpxhni8xrvu5" path="res://assets/Images/corporation.png" id="7_ryaka"]
+[ext_resource type="Texture2D" uid="uid://cwpxhni8xrvu5" path="res://assets/Images/icons/corporation.png" id="7_jjjda"]
 
 [sub_resource type="GDScript" id="GDScript_gr2gb"]
 script/source = "extends Control
@@ -24,8 +25,8 @@ func update_progress_bar(negative, positive, value):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(\"ta pronto\")
-	$MarginContainer/ResourcesGroup/MoneyLabel.text = \"Capital: R$ \" + str(ScoreManager.money)
-	$MarginContainer/ResourcesGroup/RevenueLabel.text = \"Rendimento: R$ \" + str(ScoreManager.revenue)
+	$MarginContainer/ResourcesGroup/MoneyLabel.text = \"R$ \" + str(ScoreManager.money)
+	$MarginContainer/ResourcesGroup/RevenueLabel.text = \"R$ \" + str(ScoreManager.revenue)
 	update_progress_bar(
 		$MarginContainer2/ESGGroup/EnviromentGroup/NegativeProgressBar,
 		$MarginContainer2/ESGGroup/EnviromentGroup/PositiveProgressBar,
@@ -110,23 +111,22 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 alignment = 1
 
-[node name="ButtonExit" type="Button" parent="MarginContainer/ResourcesGroup"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "SAIR"
-
 [node name="MoneyLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_3ky6y")
 theme_override_font_sizes/font_size = 40
 text = "200000"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RevenueLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("3_3ky6y")
 theme_override_font_sizes/font_size = 40
 text = "10000"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/ResourcesGroup/RevenueLabel"]
@@ -172,14 +172,6 @@ layout_mode = 2
 theme_override_styles/fill = ExtResource("4_sc55w")
 value = 20.0
 
-[node name="ESGButton" parent="MarginContainer2/ESGGroup/EnviromentGroup" index="1"]
-theme_override_font_sizes/font_size = 20
-text = "Ambiental"
-icon = ExtResource("5_q7roa")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
-
 [node name="PositiveProgressBar" parent="MarginContainer2/ESGGroup/EnviromentGroup" index="2"]
 value = 70.0
 
@@ -191,12 +183,7 @@ theme_override_styles/fill = ExtResource("4_sc55w")
 value = 90.0
 
 [node name="ESGButton" parent="MarginContainer2/ESGGroup/SocialGroup" index="1"]
-theme_override_font_sizes/font_size = 20
-text = "Social"
-icon = ExtResource("6_fxxk7")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+texture_normal = ExtResource("6_fxxk7")
 
 [node name="PositiveProgressBar" parent="MarginContainer2/ESGGroup/SocialGroup" index="2"]
 value = 10.0
@@ -209,12 +196,7 @@ theme_override_styles/fill = ExtResource("4_sc55w")
 value = 50.0
 
 [node name="ESGButton" parent="MarginContainer2/ESGGroup/GovernanceGroup" index="1"]
-theme_override_font_sizes/font_size = 20
-text = "Governância"
-icon = ExtResource("7_ryaka")
-icon_alignment = 1
-vertical_icon_alignment = 0
-expand_icon = true
+texture_normal = ExtResource("7_jjjda")
 
 [connection signal="pressed" from="ButtonNext" to="." method="_on_button_next_pressed" flags=7]
 [connection signal="pressed" from="MarginContainer2/ESGGroup/EnviromentGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [0]]
