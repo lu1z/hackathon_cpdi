@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bj7jmudfnx6ur"]
+[gd_scene load_steps=7 format=3 uid="uid://bj7jmudfnx6ur"]
 
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_lessr"]
 [ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="2_sj335"]
-[ext_resource type="Texture2D" uid="uid://cs8vyqiltwvjc" path="res://assets/Images/intro/INTRO.png" id="3_vk7f5"]
+[ext_resource type="Texture2D" uid="uid://c4ls62rbk1et" path="res://assets/Images/background/BGNoLogo.png" id="3_1tiph"]
+[ext_resource type="Texture2D" uid="uid://dobjrc2p2mdax" path="res://assets/Images/icons/logo1.png" id="4_pqpte"]
 
 [sub_resource type="GDScript" id="GDScript_y2014"]
 script/source = "extends Control
@@ -22,6 +23,10 @@ func _on_button_settings_pressed():
 	TransitionScene.load_scene(\"res://scenes/pages/settings_page.tscn\",\"shader1\")
 	#get_tree().change_scene_to_file(\"res://scenes/pages/settings_page.tscn\")
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30eon"]
+atlas = ExtResource("4_pqpte")
+region = Rect2(0, 0.0858765, 685.434, 672.997)
 
 [node name="StartPage" type="Control"]
 layout_mode = 3
@@ -45,39 +50,32 @@ expand_mode = 3
 
 [node name="TextureRectLogo" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -576.0
-offset_bottom = 576.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_vk7f5")
-expand_mode = 5
+texture = ExtResource("3_1tiph")
+expand_mode = 3
 
-[node name="Controls" type="HBoxContainer" parent="."]
+[node name="TextureRectLogo2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 96.0
+offset_bottom = 648.0
 grow_horizontal = 2
+texture = SubResource("AtlasTexture_30eon")
+expand_mode = 5
 
-[node name="ButtonSettings" type="Button" parent="Controls"]
-layout_mode = 2
+[node name="ButtonSettings" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 85.0
+grow_horizontal = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 64
 text = "Configurações"
-
-[node name="VSeparator" type="VSeparator" parent="Controls"]
-layout_mode = 2
-theme_override_constants/separation = 25
-
-[node name="ButtonExit" type="Button" parent="Controls"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "Sair"
 
 [node name="ButtonStart" type="Button" parent="."]
 layout_mode = 1
@@ -91,6 +89,5 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 64
 text = "Iniciar"
 
-[connection signal="pressed" from="Controls/ButtonSettings" to="." method="_on_button_settings_pressed" flags=7]
-[connection signal="pressed" from="Controls/ButtonExit" to="." method="_on_button_exit_pressed" flags=7]
+[connection signal="pressed" from="ButtonSettings" to="." method="_on_button_settings_pressed" flags=7]
 [connection signal="pressed" from="ButtonStart" to="." method="_on_button_start_pressed" flags=7]

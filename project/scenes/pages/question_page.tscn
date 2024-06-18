@@ -91,6 +91,7 @@ custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
+theme_override_colors/default_color = Color(0.12549, 0.341176, 0.196078, 1)
 theme_override_font_sizes/normal_font_size = 32
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas integer eget aliquet nibh praesent. Enim blandit volutpat maecenas volutpat. A lacus vestibulum sed arcu. Semper feugiat nibh sed pulvinar proin gravida hendrerit. Id volutpat lacus laoreet non curabitur gravida arcu ac. Aliquam malesuada bibendum arcu vitae elementum."
 fit_content = true

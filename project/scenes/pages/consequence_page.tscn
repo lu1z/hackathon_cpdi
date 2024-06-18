@@ -114,8 +114,8 @@ size_flags_vertical = 3
 custom_minimum_size = Vector2(0, 500)
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 10.14
-theme_override_font_sizes/normal_font_size = 25
+theme_override_colors/default_color = Color(0.12549, 0.341176, 0.196078, 1)
+theme_override_font_sizes/normal_font_size = 27
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Porttitor rhoncus dolor purus non enim praesent elementum. Adipiscing enim eu turpis egestas pretium aenean pharetra magna. Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. Mauris in aliquam sem fringilla ut morbi tincidunt. Blandit turpis cursus in hac habitasse platea dictumst quisque. Aliquet nibh praesent tristique magna sit amet."
 
 [node name="ESGSumary" type="HBoxContainer" parent="MarginContainer/Consequences"]
