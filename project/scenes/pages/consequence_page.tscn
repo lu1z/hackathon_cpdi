@@ -111,7 +111,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="LabelConsequence" type="RichTextLabel" parent="MarginContainer/Consequences"]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(0, 420)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.12549, 0.341176, 0.196078, 1)
