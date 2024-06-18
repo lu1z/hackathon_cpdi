@@ -3,9 +3,9 @@
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_eybiu"]
 [ext_resource type="PackedScene" uid="uid://bfby6m5hn7km7" path="res://scenes/components/e_s_g_component.tscn" id="1_ulsed"]
 [ext_resource type="Texture2D" uid="uid://bvwx2jtc0od0l" path="res://assets/Images/background/1.png" id="2_i3rsk"]
-[ext_resource type="Theme" uid="uid://b0h6dkim6mpq2" path="res://assets/temas/temaTopics.tres" id="3_3ky6y"]
+[ext_resource type="PackedScene" uid="uid://cgl31rft4hgqn" path="res://scenes/components/resource_component.tscn" id="3_amq2x"]
+[ext_resource type="Texture2D" uid="uid://gsgdi3147bbx" path="res://assets/Images/icons/recorrente.png" id="4_4xqn3"]
 [ext_resource type="StyleBox" uid="uid://c4kk7wfl4ie75" path="res://assets/temas/progress_negative.tres" id="4_sc55w"]
-[ext_resource type="Texture2D" uid="uid://doo3nq3uvmnnu" path="res://assets/Images/icons/environmental-strategy.png" id="5_q7roa"]
 [ext_resource type="Texture2D" uid="uid://jkywygyibkfd" path="res://assets/Images/icons/inclusion.png" id="6_fxxk7"]
 [ext_resource type="Texture2D" uid="uid://cwpxhni8xrvu5" path="res://assets/Images/icons/corporation.png" id="7_jjjda"]
 
@@ -25,8 +25,8 @@ func update_progress_bar(negative, positive, value):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(\"ta pronto\")
-	$MarginContainer/ResourcesGroup/MoneyLabel.text = \"R$ \" + str(ScoreManager.money)
-	$MarginContainer/ResourcesGroup/RevenueLabel.text = \"R$ \" + str(ScoreManager.revenue)
+	$MarginContainer/ResourcesGroup/ResourceMoney/LabelAmount.text = \"R$ \" + str(ScoreManager.money)
+	$MarginContainer/ResourcesGroup/ResourceRevenue/LabelAmount.text = \"R$ \" + str(ScoreManager.revenue)
 	update_progress_bar(
 		$MarginContainer2/ESGGroup/EnviromentGroup/NegativeProgressBar,
 		$MarginContainer2/ESGGroup/EnviromentGroup/PositiveProgressBar,
@@ -111,38 +111,14 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 alignment = 1
 
-[node name="MoneyLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
+[node name="ResourceMoney" parent="MarginContainer/ResourcesGroup" instance=ExtResource("3_amq2x")]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("3_3ky6y")
-theme_override_font_sizes/font_size = 40
-text = "200000"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="RevenueLabel" type="Label" parent="MarginContainer/ResourcesGroup"]
+[node name="ResourceRevenue" parent="MarginContainer/ResourcesGroup" instance=ExtResource("3_amq2x")]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("3_3ky6y")
-theme_override_font_sizes/font_size = 40
-text = "10000"
-horizontal_alignment = 1
-vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/ResourcesGroup/RevenueLabel"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -80.0
-offset_right = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_q7roa")
-expand_mode = 5
-stretch_mode = 5
+[node name="TextureRectIcon" parent="MarginContainer/ResourcesGroup/ResourceRevenue" index="0"]
+texture = ExtResource("4_4xqn3")
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -203,6 +179,7 @@ texture_normal = ExtResource("7_jjjda")
 [connection signal="pressed" from="MarginContainer2/ESGGroup/SocialGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [1]]
 [connection signal="pressed" from="MarginContainer2/ESGGroup/GovernanceGroup/ESGButton" to="." method="_on_esg_button_pressed" flags=7 binds= [2]]
 
+[editable path="MarginContainer/ResourcesGroup/ResourceRevenue"]
 [editable path="MarginContainer2/ESGGroup/EnviromentGroup"]
 [editable path="MarginContainer2/ESGGroup/SocialGroup"]
 [editable path="MarginContainer2/ESGGroup/GovernanceGroup"]
