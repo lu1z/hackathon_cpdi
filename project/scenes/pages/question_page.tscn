@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://7jibaagoe42o"]
+[gd_scene load_steps=7 format=3 uid="uid://7jibaagoe42o"]
 
 [ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_gkgyr"]
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_nb31d"]
 [ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="2_ab1ck"]
+[ext_resource type="Theme" uid="uid://b0h6dkim6mpq2" path="res://assets/temas/temaTopics.tres" id="4_fux1d"]
+[ext_resource type="PackedScene" uid="uid://cgl31rft4hgqn" path="res://scenes/components/resource_component.tscn" id="4_nfo4g"]
 
 [sub_resource type="GDScript" id="GDScript_lrsps"]
 script/source = "extends Control
@@ -15,14 +17,9 @@ func _ready():
 	$MarginContainer2/QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
 	$MarginContainer/DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
 	$MarginContainer2/QuestionInformation/QuestionLabel.text = QuestionManager.current.question
-	$MarginContainer2/QuestionInformation/CostLabel.text = \"Irrelevante\"
-	if QuestionManager.current.cost < 0:
-		$MarginContainer2/QuestionInformation/CostLabel.text = \"Custo: R$ \" + str(QuestionManager.current.cost)
-	if QuestionManager.current.cost > 0:
-		$MarginContainer2/QuestionInformation/CostLabel.text = \"Bônus: R$ \" + str(QuestionManager.current.cost)
+	$MarginContainer2/QuestionInformation/Resource/LabelAmount.text = \"R$ \" + str(QuestionManager.current.cost)
 	$MarginContainer2/QuestionInformation/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
 	$MarginContainer2/QuestionInformation/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
-	load(\"res://scenes/components/character_component.tscn\")
 	print(\"Chosen question: \" + QuestionManager.current.id)
 
 
@@ -99,12 +96,8 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 fit_content = true
 scroll_following = true
 
-[node name="CostLabel" type="Label" parent="MarginContainer2/QuestionInformation"]
+[node name="Resource" parent="MarginContainer2/QuestionInformation" instance=ExtResource("4_nfo4g")]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "-2000"
-horizontal_alignment = 1
 
 [node name="ActionInformation" type="Label" parent="MarginContainer2/QuestionInformation"]
 custom_minimum_size = Vector2(0, 50)
@@ -147,6 +140,7 @@ theme_override_constants/separation = 20
 [node name="LabelSkips" type="Label" parent="MarginContainer/DecisionButtons/SkipComponent"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("4_fux1d")
 theme_override_font_sizes/font_size = 64
 text = "3"
 horizontal_alignment = 1

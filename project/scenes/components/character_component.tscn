@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1ksvp8qt07tk"]
+[gd_scene load_steps=4 format=3 uid="uid://1ksvp8qt07tk"]
 
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_2i2mx"]
 [ext_resource type="Texture2D" uid="uid://grkuhknwp21g" path="res://assets/characters/cristina_marketing.png" id="2_lyyag"]
+[ext_resource type="Theme" uid="uid://b0h6dkim6mpq2" path="res://assets/temas/temaTopics.tres" id="3_3kjcb"]
 
 [node name="CharacterComponent" type="HBoxContainer"]
 anchors_preset = 8
@@ -28,5 +29,6 @@ expand_mode = 3
 [node name="LabelName" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("3_3kjcb")
 theme_override_font_sizes/font_size = 64
 text = "Cleusa do CPDI"

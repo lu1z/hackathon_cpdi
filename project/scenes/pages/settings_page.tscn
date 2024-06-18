@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dnjvy702y1op"]
+[gd_scene load_steps=3 format=3 uid="uid://dnjvy702y1op"]
+
+[ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="1_yq6cd"]
 
 [sub_resource type="GDScript" id="GDScript_n5l8v"]
 script/source = "extends Control
@@ -25,6 +27,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_n5l8v")
+
+[node name="TextureRectBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yq6cd")
+expand_mode = 3
 
 [node name="Settings" type="VBoxContainer" parent="."]
 layout_mode = 1

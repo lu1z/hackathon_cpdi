@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://b45yvtmwg3bkc"]
+[gd_scene load_steps=9 format=3 uid="uid://b45yvtmwg3bkc"]
 
 [ext_resource type="Theme" uid="uid://bop4hraw6qcc6" path="res://assets/temas/main theme.tres" id="1_4wnkv"]
 [ext_resource type="PackedScene" uid="uid://1ksvp8qt07tk" path="res://scenes/components/character_component.tscn" id="1_nyy2w"]
 [ext_resource type="Texture2D" uid="uid://bvwx2jtc0od0l" path="res://assets/Images/background/1.png" id="2_21ioo"]
+[ext_resource type="PackedScene" uid="uid://cgl31rft4hgqn" path="res://scenes/components/resource_component.tscn" id="4_c2ne7"]
+[ext_resource type="Texture2D" uid="uid://doo3nq3uvmnnu" path="res://assets/Images/icons/environmental-strategy.png" id="5_lsonl"]
+[ext_resource type="Texture2D" uid="uid://jkywygyibkfd" path="res://assets/Images/icons/inclusion.png" id="6_r1wa8"]
+[ext_resource type="Texture2D" uid="uid://cwpxhni8xrvu5" path="res://assets/Images/icons/corporation.png" id="7_ibx64"]
 
 [sub_resource type="GDScript" id="GDScript_q28hg"]
 script/source = "extends Control
@@ -16,16 +20,22 @@ func _ready():
 	$MarginContainer/Consequences/CharacterComponent/LabelName.text = QuestionManager.current.character.display_name
 	$MarginContainer/Consequences/CharacterComponent/TextureRectAvatar.texture = load(QuestionManager.current.character.asset_image)
 	var esg = QuestionManager.current.esg
+	var e
+	var s
+	var g
 	if GameManager.params:
 		$MarginContainer/Consequences/LabelConsequence.text = QuestionManager.current.yes
-		$MarginContainer/Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.yes_enviroment))
-		$MarginContainer/Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.yes_social))
-		$MarginContainer/Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.yes_governance))
+		e =  esg.self_group_sum(ESG.yes_enviroment)
+		s = esg.self_group_sum(ESG.yes_social)
+		g = esg.self_group_sum(ESG.yes_governance)
 	else:
 		$MarginContainer/Consequences/LabelConsequence.text = QuestionManager.current.no
-		$MarginContainer/Consequences/ESGSumary/E.text = \"A: \" + str(esg.self_group_sum(ESG.no_enviroment))
-		$MarginContainer/Consequences/ESGSumary/S.text = \"S: \" + str(esg.self_group_sum(ESG.no_social))
-		$MarginContainer/Consequences/ESGSumary/G.text = \"G: \" + str(esg.self_group_sum(ESG.no_governance))
+		e =  esg.self_group_sum(ESG.no_enviroment)
+		s = esg.self_group_sum(ESG.no_social)
+		g = esg.self_group_sum(ESG.no_governance)
+	$MarginContainer/Consequences/ESGSumary/E/LabelAmount.text = str(e) if e < 0 else \"+\" + str(e)
+	$MarginContainer/Consequences/ESGSumary/S/LabelAmount.text = str(s) if s < 0 else \"+\" + str(s)
+	$MarginContainer/Consequences/ESGSumary/G/LabelAmount.text = str(g) if g < 0 else \"+\" + str(g)
 
 
 func _on_continue_button_pressed():
@@ -110,27 +120,41 @@ text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
 
 [node name="ESGSumary" type="HBoxContainer" parent="MarginContainer/Consequences"]
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 3
+theme_override_constants/separation = 40
 
-[node name="E" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
+[node name="E" parent="MarginContainer/Consequences/ESGSumary" instance=ExtResource("4_c2ne7")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "+5"
-horizontal_alignment = 1
+size_flags_horizontal = 0
 
-[node name="S" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "-3"
-horizontal_alignment = 1
+[node name="TextureRectIcon" parent="MarginContainer/Consequences/ESGSumary/E" index="0"]
+texture = ExtResource("5_lsonl")
 
-[node name="G" type="Label" parent="MarginContainer/Consequences/ESGSumary"]
+[node name="LabelAmount" parent="MarginContainer/Consequences/ESGSumary/E" index="1"]
+text = "+2"
+
+[node name="S" parent="MarginContainer/Consequences/ESGSumary" instance=ExtResource("4_c2ne7")]
 layout_mode = 2
-size_flags_horizontal = 3
-theme_override_font_sizes/font_size = 64
-text = "+7"
-horizontal_alignment = 1
+
+[node name="TextureRectIcon" parent="MarginContainer/Consequences/ESGSumary/S" index="0"]
+texture = ExtResource("6_r1wa8")
+
+[node name="LabelAmount" parent="MarginContainer/Consequences/ESGSumary/S" index="1"]
+text = "+4"
+
+[node name="G" parent="MarginContainer/Consequences/ESGSumary" instance=ExtResource("4_c2ne7")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TextureRectIcon" parent="MarginContainer/Consequences/ESGSumary/G" index="0"]
+texture = ExtResource("7_ibx64")
+
+[node name="LabelAmount" parent="MarginContainer/Consequences/ESGSumary/G" index="1"]
+text = "-0"
 
 [connection signal="pressed" from="Acknowledge/ContinueButton" to="." method="_on_continue_button_pressed" flags=7]
+
+[editable path="MarginContainer/Consequences/ESGSumary/E"]
+[editable path="MarginContainer/Consequences/ESGSumary/S"]
+[editable path="MarginContainer/Consequences/ESGSumary/G"]

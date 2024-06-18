@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://540q4ugv7qp"]
+[gd_scene load_steps=5 format=3 uid="uid://540q4ugv7qp"]
 
 [ext_resource type="Texture2D" uid="uid://debwxt85wo8mm" path="res://assets/Images/background/4.png" id="1_a6d6w"]
 [ext_resource type="Texture2D" uid="uid://cgo4llxd8cn6f" path="res://assets/Images/end/youwin1.png" id="2_c7aqb"]
+[ext_resource type="Theme" uid="uid://b0h6dkim6mpq2" path="res://assets/temas/temaTopics.tres" id="3_ctmj0"]
 
 [sub_resource type="GDScript" id="GDScript_ob21x"]
 script/source = "extends Control
@@ -71,6 +72,7 @@ grow_vertical = 0
 
 [node name="LabelElapsedTime" type="Label" parent="EndGameFeedback"]
 layout_mode = 2
+theme = ExtResource("3_ctmj0")
 theme_override_font_sizes/font_size = 64
 text = "26 meses"
 horizontal_alignment = 1
