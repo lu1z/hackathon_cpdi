@@ -25,6 +25,7 @@ func _ready():
 
 
 func _on_button_yes_pressed():
+	AudioPlayer.play_button()
 	GameManager.params = true
 	ScoreManager.apply_cost(QuestionManager.current.cost)
 	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.yes_group)
@@ -34,6 +35,7 @@ func _on_button_yes_pressed():
 
 
 func _on_button_no_pressed():
+	AudioPlayer.play_button()
 	GameManager.params = false
 	ScoreManager.apply_scores(QuestionManager.current.esg.esg, ESG.no_group)
 	TransitionScene.load_scene(\"res://scenes/pages/consequence_page.tscn\",\"shader1\")
@@ -41,6 +43,7 @@ func _on_button_no_pressed():
 
 
 func _on_button_skip_pressed():
+	AudioPlayer.play_button()
 	ScoreManager.decrement_skip()
 	QuestionManager.rollback_question()
 	GameManager.present_question()

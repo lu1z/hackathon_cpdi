@@ -27,6 +27,7 @@ func _ready():
 		return
 
 func _on_button_restart_pressed():
+	AudioPlayer.play_button()
 	TransitionScene.load_scene(\"res://scenes/pages/start_page.tscn\",\"shader1\")
 	#get_tree().change_scene_to_file(\"res://scenes/pages/start_page.tscn\")
 "
