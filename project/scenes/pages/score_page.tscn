@@ -48,6 +48,7 @@ func _ready():
 
 
 func _on_button_next_pressed():
+	AudioPlayer.play_button()
 	GameManager.pre_turn()
 	GameManager.present_question()
 	print(\"next buton\")
@@ -56,6 +57,7 @@ func _on_button_next_pressed():
 
 
 func _on_esg_button_pressed(group: ESG.ESG_GROUPS):
+	AudioPlayer.play_button()
 	GameManager.params = group
 	print(\"esg buton\")
 	TransitionScene.load_scene(\"res://scenes/pages/topics_page.tscn\",\"shader1\")

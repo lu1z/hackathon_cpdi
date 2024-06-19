@@ -39,6 +39,7 @@ func _ready():
 
 
 func _on_continue_button_pressed():
+	AudioPlayer.play_button()
 	if ScoreManager.check_win_condition():
 		GameManager.params = true
 		return await TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"shader1\") #get_tree().change_scene_to_file(\"res://scenes/pages/end_page.tscn\") #TransitionScene.load_scene(\"res://scenes/pages/end_page.tscn\",\"fade\") 
