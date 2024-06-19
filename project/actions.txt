@@ -1,0 +1,7 @@
+do_nothing,Sem ação,res://assets/actions/zeroblue.png
+revenue_plus,Tio patinhas,res://assets/actions/tioPatinhas.png
+skip_plus,Coelho saltitante,res://assets/actions/coelho.png
+change_skips_and_revenue_plus,Gafanhoto dourado,res://assets/actions/gafanhoto.png
+revenue_minus,Boletos atrasados,res://assets/actions/planilhared.png
+skip_minus,Flechada no joelho,res://assets/actions/trap.png
+change_skips_and_revenue_minus,Chinela arrebentada,res://assets/actions/chinela.png

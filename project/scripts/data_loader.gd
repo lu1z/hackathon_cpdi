@@ -7,6 +7,7 @@ var strategy = CONFIG_FILE
 
 static var QUESTIONS_FILE_PATH = "res://questions.txt"
 static var CHARACTERS_FILE_PATH = "res://characters.txt"
+static var ACTIONS_FILE_PATH = "res://actions.txt"
 
 
 func load_file():
@@ -64,8 +65,27 @@ func load_csv_file_characters():
 	return q_data
 
 
+func load_csv_file_actions():
+	var file = FileAccess.open(ACTIONS_FILE_PATH, FileAccess.READ)
+	if file == null:
+		print(FileAccess.get_open_error())
+		return
+	var q_data = {}
+	while not file.eof_reached():
+		var line = file.get_csv_line()
+		if line.size() <= 1:
+			continue
+		var action = []
+		action.append(line[1])
+		action.append(line[2])
+		q_data.merge({ line[0]: action })
+	file.close()
+	return q_data
+
+
 func load_csv_file():
 	var characters = load_csv_file_characters()
+	var actions = load_csv_file_actions()
 	var file = FileAccess.open(QUESTIONS_FILE_PATH, FileAccess.READ)
 	if file == null:
 		print(FileAccess.get_open_error())
@@ -88,6 +108,9 @@ func load_csv_file():
 		last -= 1
 		action.arg1 = line[last]
 		last -= 1
+		var a = actions.get(action.name)
+		action.text = a[0]
+		action.icon = a[1]
 		question.action = action
 		question.id = StringName(line[last])
 		last -= 1

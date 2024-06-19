@@ -6,6 +6,8 @@ var arg1: String
 var arg2: String
 var arg3: String
 var arg4: String
+var text: String
+var icon: String
 
 
 func execute():
@@ -43,3 +45,27 @@ static func change_skips(_arg1, _arg2, _arg3, _arg4):
 static func change_skips_and_revenue(_arg1, _arg2, _arg3, _arg4):
 	change_skips(_arg1, "", "", "")
 	change_revenue(_arg2, _arg3, "", "")
+
+
+static func revenue_plus(_arg1, _arg2, _arg3, _arg4):
+	change_revenue(_arg1, _arg2, _arg3, _arg4)
+
+
+static func revenue_minus(_arg1, _arg2, _arg3, _arg4):
+	change_revenue(_arg1, _arg2, _arg3, _arg4)
+
+
+static func skip_minus(_arg1, _arg2, _arg3, _arg4):
+	change_skips(_arg1, _arg2, _arg3, _arg4)
+
+
+static func skip_plus(_arg1, _arg2, _arg3, _arg4):
+	change_skips(_arg1, _arg2, _arg3, _arg4)
+
+
+static func change_skips_and_revenue_plus(_arg1, _arg2, _arg3, _arg4):
+	change_skips_and_revenue(_arg1, _arg2, _arg3, _arg4)
+
+
+static func change_skips_and_revenue_minus(_arg1, _arg2, _arg3, _arg4):
+	change_skips_and_revenue(_arg1, _arg2, _arg3, _arg4)

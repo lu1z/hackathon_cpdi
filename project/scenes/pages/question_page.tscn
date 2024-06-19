@@ -14,7 +14,8 @@ script/source = "extends Control
 func _ready():
 	if ScoreManager.cant_skip():
 		$MarginContainer/DecisionButtons/SkipComponent.visible = false
-	$MarginContainer2/QuestionInformation/ActionInformation.text = QuestionManager.current.action.name
+	#$MarginContainer2/QuestionInformation/ActionInformation/LabelAmount.text = QuestionManager.current.action.text
+	$MarginContainer2/QuestionInformation/ActionInformation/TextureRectIcon.texture = load(QuestionManager.current.action.icon)
 	$MarginContainer/DecisionButtons/SkipComponent/LabelSkips.text = str(ScoreManager.skip)
 	$MarginContainer2/QuestionInformation/QuestionLabel.text = QuestionManager.current.question
 	$MarginContainer2/QuestionInformation/Resource/LabelAmount.text = \"R$ \" + str(QuestionManager.current.cost)
@@ -100,14 +101,8 @@ scroll_following = true
 [node name="Resource" parent="MarginContainer2/QuestionInformation" instance=ExtResource("4_nfo4g")]
 layout_mode = 2
 
-[node name="ActionInformation" type="Label" parent="MarginContainer2/QuestionInformation"]
-custom_minimum_size = Vector2(0, 50)
+[node name="ActionInformation" parent="MarginContainer2/QuestionInformation" instance=ExtResource("4_nfo4g")]
 layout_mode = 2
-size_flags_vertical = 6
-theme_override_font_sizes/font_size = 32
-text = "Gafanhoto"
-horizontal_alignment = 1
-autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
