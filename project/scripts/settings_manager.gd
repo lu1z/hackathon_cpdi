@@ -1,8 +1,8 @@
 extends Node
 
 
-static var DEFAULT_VOLUME = 0
-static var DEFAULT_VOLUMESFX = 24
+static var DEFAULT_VOLUME = 1
+static var DEFAULT_VOLUMESFX = 1
 
 
 var volume = DEFAULT_VOLUME

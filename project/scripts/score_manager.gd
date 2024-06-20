@@ -9,7 +9,7 @@ var debt: int
 
 
 static var DEFAULT_INITIAL_SCORE = 0 #Valor inicial de cada topico dentro do esg
-static var DEFAULT_INITIAL_MONEY = 50_000 #Dinheiro inicial
+static var DEFAULT_INITIAL_MONEY = 100_000 #Dinheiro inicial
 static var DEFAULT_INITIAL_REVENUE = int(DEFAULT_INITIAL_MONEY / 20) #Salário inical
 static var DEFAULT_WIN_CONDITION = 30 # "E" > 5 and "S" > 5 and "G" > 5
 static var DEFAULT_LOSE_CONDITION = -30 # "E" < -20 or "S" < -20 or "G" < -20
