@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="esg_game"
+config/name="ESG Manager"
 run/main_scene="res://scenes/pages/introduction_page.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://assets/Images/icons/icon.svg"

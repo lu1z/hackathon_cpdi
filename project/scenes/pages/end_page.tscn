@@ -25,6 +25,10 @@ func _ready():
 	if ScoreManager.get_current_group_score(ESG.ESG_GROUPS.GOVERNANCE) < ScoreManager.DEFAULT_LOSE_CONDITION:
 		$TextureRectResult.texture = load(\"res://assets/Images/end/loseGover1.png\")
 		return
+	if QuestionManager.questions.is_empty():
+		$TextureRectResult.texture = load(\"res://assets/Images/end/falencia1.png\")
+		return
+
 
 func _on_button_restart_pressed():
 	AudioPlayer.play_button()
